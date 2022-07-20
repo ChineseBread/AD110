@@ -1,0 +1,26 @@
+.search_item_title,.search_item_content{
+  cursor: pointer;
+}
+.search_item_title{
+  font-size: 20px;
+  transition: color ease-in-out 0.15s;
+  &:hover{
+    color: #40a9ff;
+  }
+}
+.search_item_extra{
+  position: relative;
+  width: 280px;
+  height: 160px;
+}
+.search_item_content{
+  transition: color ease-in-out 0.2s;
+  &:hover{
+    color: #8c8c8c;
+  }
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

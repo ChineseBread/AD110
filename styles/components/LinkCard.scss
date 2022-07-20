@@ -1,0 +1,89 @@
+.link-card{
+  margin: 10px 0;
+  .link-item{
+    width: calc(25% - 10px);
+    display: inline-block;
+    margin: 5px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    a{
+      color: #262626;
+      &:hover{
+        color: #595959;
+      }
+    }
+  }
+}
+//头部卡片
+.link-card-header{
+  .ant-card-head{
+    @media screen and (min-width: 1000px){
+      padding: 0;
+    }
+  }
+  .ant-card-head-title{
+    color:#595959;
+    font-size:30px;
+    letter-spacing:1px
+  }
+}
+
+// 下方链接卡片
+.link-card-body{
+
+  .ant-card-head{
+    //标题和分界线
+    .ant-card-head-title{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span:nth-child(1){
+        margin-right: 10px;
+      }
+      span:nth-child(2){
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px solid #595959;
+      }
+    }
+    @media screen and (min-width: 1000px){
+      padding:0;
+    }
+    border-bottom: 0;
+  }
+
+  .ant-card-head-title{
+    color:#40a9ff;
+    font-size:14px;
+    letter-spacing:1px
+  }
+  .ant-card-body{
+    @media screen and (min-width: 1000px){
+      padding:10px 0;
+    }
+  }
+}
+
+.hot-link-item{
+  display: inline-block;
+  font-weight: 500;
+  padding: 2px 5px;
+  cursor: pointer;
+  transition: color ease-in-out 0.2s;
+  a{
+    color: #f0f0f0;
+    &:hover{
+      color: #fff;
+    }
+  }
+}
+@media screen and (max-width: 900px){
+  .link-card{
+    width: 100%;
+    .link-item{
+      width: 50%;
+    }
+  }
+}

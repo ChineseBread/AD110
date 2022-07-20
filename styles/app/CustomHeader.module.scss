@@ -1,0 +1,42 @@
+.header{
+    height: 100%;
+    width: 100%;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    //box-shadow: 0 2px 4px -2px #d9d9d9;
+    div:nth-child(1){
+        display: flex;
+        align-items: center;
+        span:nth-child(2){
+            width: 90px;
+            img{
+                cursor: pointer;
+            }
+        }
+    }
+    div:nth-child(2){
+        min-width: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & > span{
+            width: 45%;
+            height: 25px;
+            background: transparent;
+            //border: 2px solid #fff;
+            input{
+                background: transparent;
+            }
+        }
+    }
+}
+@media screen and (max-width: 900px){
+    .header{
+        padding: 0 10px;
+        div:nth-child(2){
+            display: none;
+        }
+    }
+}
