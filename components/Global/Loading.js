@@ -1,21 +1,19 @@
-import {useContext} from 'react';
 import {Spin} from "antd";
-import styles from '../../styles/global/Loading.module.scss'
-import logo from '../../public/static/logo.png'
 import Image from "next/image";
-import ScreenContext from "../../store/ScreenContext";
+import styles from '../../styles/pages/Loading.module.scss'
+import logo from '../../public/static/logo.png'
 function Loading(props) {
-    const {isPhone} = useContext(ScreenContext)
     return (
         <div className={styles.loading_container}>
             <div>
                 <Image
+                    priority={true}
                     src={logo}
                     layout='fill'
                     objectFit='contain'
                 />
             </div>
-            <Spin size="large" />
+            <Spin size='large'/>
         </div>
     )
 }

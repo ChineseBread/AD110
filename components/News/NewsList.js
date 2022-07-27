@@ -1,14 +1,16 @@
 import {Fragment} from 'react';
-import {Button, Card, Divider, Dropdown, Menu, Pagination, Result} from "antd";
+import {Button, Card, Divider, Dropdown, Pagination, Result} from "antd";
 import {UnorderedListOutlined} from "@ant-design/icons";
+import Link from "next/link";
 import {useRouter} from "next/router";
 import Image from "next/image";
-import NewsDataRequest from "../../uitls/request/NewsDataRequest";
-import banner from '../../public/static/banner2.png'
-import styles from '../../styles/pages/News.module.scss'
+import Menu from "../Elegant/Menu";
+import CustomHeadTag from "../App/CustomHeadTag";
 import {getTimeFromNow} from "../../uitls/present/TimeUtils";
-import Link from "next/link";
-import Head from "next/head";
+import {UBBToIntro} from "../../uitls/present/UBBUtils";
+import NewsDataRequest from "../../uitls/request/NewsDataRequest";
+import styles from '../../styles/pages/Classic/News.module.scss'
+import banner from '../../public/static/banner2.png'
 const {Meta} = Card
 function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
     const router = useRouter()
@@ -22,24 +24,17 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
     const menu = () => {
         let items = BlogCategory.map(({cate_id,cate_name,cate_nums}) => ({key:cate_id,label:<span>{`${cate_name} | ${cate_nums}`}</span>}))
         items = [{key:'elegant',label:<span>出色</span>}].concat(items)
-        return <Menu onClick={changeCategory} style={{maxHeight:320,overflow:'auto'}} items={items}/>
+        return <Menu onClick={changeCategory}  items={items}/>
     }
     return (
         <div className='page-content font-family'>
-            <Head>
-                <title>AD110咨讯</title>
-            </Head>
+            <CustomHeadTag title='AD110·咨讯'/>
             <Card
-                headStyle={{
-                    color:'#595959',
-                    fontSize:'20px',
-                    fontWeight:600,
-                    letterSpacing:1
-                }}
+                className='blog-card'
                 bordered={false}
                 title={<Fragment>
                     <span>资讯</span>
-                    <span><Dropdown trigger={['click']} placement='bottomLeft' overlay={menu()}><Button type='text' icon={<UnorderedListOutlined  style={{fontSize:20}}/>}/></Dropdown></span>
+                    <Dropdown trigger={['click']} overlayClassName='blog-drop-down' placement='bottomLeft' overlay={menu()}><Button type='text' icon={<UnorderedListOutlined/>}/></Dropdown>
                 </Fragment>}
             >
                 {News.length >= 1 ? <Fragment>
@@ -60,11 +55,11 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
                                                     alt={title}
                                                 />
                                             }
-                                            className='blog-card'
+                                            // className='section-card'
                                         >
                                             <Meta title={title} description={
                                                 <div className={styles.news_description_container}>
-                                                    <div className={styles.news_content}>{content}</div>
+                                                    <div className={styles.news_content}>{UBBToIntro(content)}</div>
                                                     <Divider style={{margin:'4px 0'}}/>
                                                     <div className={styles.news_info}>{`${getTimeFromNow(post_time)} | By ${author}`}</div>
                                                 </div>

@@ -1,22 +1,27 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Avatar, Button, Checkbox, Comment, Divider, Form, Input, message} from "antd";
 import {getImageUrl} from "../../uitls/request/request";
-import {getFormatTime, getTimeFromNow} from "../../uitls/present/TimeUtils";
+import {getTimeFromNow} from "../../uitls/present/TimeUtils";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
-import BlogStyle from "../../styles/pages/BlogPreview.module.scss";
+import BlogStyle from "../../styles/pages/BlogPreview/BlogPreview.module.scss";
 const {TextArea} = Input
+
 function BlogCommentsList({log_id,CommentsList,total}) {
     const [form] = Form.useForm()
     const [Comments,setComments] = useState(CommentsList)
     const [page,setPage] = useState(1)
-    const onFinish = ({name,comment}) => {
-        BlogDataRequest.sendBlogComment(log_id,name,comment).then(result => {
+    useEffect(() => {
+        form.resetFields()
+        setComments(CommentsList)
+    },[log_id])
+    const onFinish = ({name,comment,website,email}) => {
+        BlogDataRequest.sendBlogComment(log_id,name,comment,website,email).then(result => {
             if (result.Ok){
-                message.success('评论成功')
-                setComments(comments => [{comm_id:result.comm_id,comm_content:comment,comm_author:name,comm_posttime:getFormatTime(new Date() / 1000,'YYYY-MM-DD HH:mm:ss'),comm_avator:'',comm_postip:result.comm_postip},...comments])
+                message.success('评论成功,请等待审核')
             }else{
                 message.warn('评论失败')
             }
+            form.resetFields()
         })
     }
     const getMoreComments = () => {
@@ -86,7 +91,7 @@ function BlogCommentsList({log_id,CommentsList,total}) {
                        </Fragment>
                    )
                })}
-               <Button onClick={getMoreComments} block disabled={Comments.length >= total} type='text'>{Comments.length < total ? '更多评论' : '暂无评论'}</Button>
+               <Button onClick={getMoreComments} block disabled={Comments.length >= total} type='text'>{Comments.length < total ? '更多评论' : '没有更多评论'}</Button>
            </div>
        </Fragment>
     )

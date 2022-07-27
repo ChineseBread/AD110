@@ -1,9 +1,9 @@
 import {Fragment} from 'react';
 import {useRouter} from "next/router";
+import Head from "next/head";
 import {Button, Card, Pagination, Result} from "antd";
 import {ArrowLeftOutlined} from "@ant-design/icons";
 import BlogsList from "./BlogsList";
-import Head from "next/head";
 
 function YearBlogsList({YearBlogsData:{BlogsData:{Blogs,total,Year},currentPage = '1'}}) {
     const router = useRouter()
@@ -16,6 +16,7 @@ function YearBlogsList({YearBlogsData:{BlogsData:{Blogs,total,Year},currentPage 
                 <title>AD110经典</title>
             </Head>
             <Card
+                className='blog-card'
                 headStyle={{
                     color:'#595959',
                     fontSize:'20px',

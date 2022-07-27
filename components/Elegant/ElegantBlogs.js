@@ -1,42 +1,35 @@
-import {Button, Card, Dropdown, Empty, Menu, Pagination} from "antd";
+import {Fragment, useState} from "react";
+import {Button, Card, Dropdown, Empty, Pagination} from "antd";
 import {useRouter} from "next/router";
 import {UnorderedListOutlined} from "@ant-design/icons";
-import Head from "next/head";
-import {Fragment} from "react";
-import BlogsList from "../App/BlogsList";
+import Menu from "./Menu";
+import BlogsList from "../Global/BlogsList";
 /**
  * @description 博文列表
  */
 function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategory = [],currentPage = "1"}}) {
     const router = useRouter()
+    const [visible,setVisible] = useState(false)
     const onPageChange = page => {
         const cateID = router.query.cateid
         router.push(`/elegant/${page}${cateID ? `?cateid=${cateID}` : ''}`)
     }
     const changeCategory = ({key}) => {
-        if (key === 'news') router.push(`/news`)
-        else router.push(`/elegant/1?cateid=${key}`)
+        if (key === 12) router.push(`/news`)
+        else router.push(`/elegant/1?cateid=${key}`).then(() => setVisible(false))
     }
     const menu = () => {
-        let items = BlogCategory.map(({cate_id,cate_name,cate_nums}) => ({key:cate_id,label:<span>{`${cate_name} | ${cate_nums}`}</span>}))
-        items = [{key:'news',label:'咨讯'}].concat(items)
-        return <Menu onClick={changeCategory} style={{maxHeight:320,overflow:'auto'}} items={items}/>
+        let items = BlogCategory.map(({cate_id,cate_name,cate_nums}) => ({key:cate_id,label:<span>{`${cate_name} | (${cate_nums})`}</span>}))
+        // items = [{key:'news',label:'咨讯'}].concat(items)
+        return <Menu onClick={changeCategory} items={items}/>
     }
     return (
         <div className='page-content font-family'>
-            <Head>
-                <title>AD110博文</title>
-            </Head>
             <Card title={<Fragment>
-                <span>{category || '出色'}</span> <span>{BlogCategory.length >= 1 && <Dropdown trigger={['click']} placement='bottomLeft' overlay={menu()}><Button type='text' icon={<UnorderedListOutlined style={{fontSize:20}}/>}/></Dropdown>}</span>
+                <span>{category || '出色'}</span>
+                {BlogCategory.length >= 1 && <Dropdown visible={visible} onVisibleChange={visible => setVisible(visible)} overlayClassName='blog-drop-down' overlayStyle={{zIndex:500}} trigger={['click']} overlay={menu()}><Button type='text' icon={<UnorderedListOutlined/>}/></Dropdown>}
             </Fragment>}
                 bordered={false}
-                headStyle={{
-                    color:'#595959',
-                    fontSize:'20px',
-                    fontWeight:600,
-                    letterSpacing:1
-                }}
                 className='blog-card'
             >
 

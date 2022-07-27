@@ -1,16 +1,16 @@
-import styles from '../../styles/pages/Classic.module.scss'
+import Link from "next/link";
 import {Card, Divider, Empty} from "antd";
 import Image from "next/image";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import banner2 from '../../public/static/banner2.png'
-import Link from "next/link";
+import styles from '../../styles/pages/Classic/Classic.module.scss'
 const {Meta} = Card
 function BlogsList({Blogs}) {
     return (
         <div className={styles.year_blogs_container}>
             {Blogs.length >= 1 ? Blogs.map(({log_id,log_title,log_cover_image,log_intro_content,log_from,log_allusion},index) => {
                 return (
-                   <Link href={`/blog?blogid=${log_id}`} key={log_id}>
+                   <Link href={`/section?articleid=${log_id}`} key={log_id}>
                        <div  className={styles.year_blog_item}>
                            <Card
                                hoverable
@@ -27,7 +27,7 @@ function BlogsList({Blogs}) {
                                    <div className={styles.year_blog_description_container}>
                                        <div className={styles.year_blog_description}>{log_intro_content}</div>
                                        <Divider style={{margin:'5px 0'}}/>
-                                       <div className={styles.year_blog_info}>{`典故:${log_allusion || '暂无典故'}`}</div>
+                                       <div className={styles.year_blog_info}>{`典故:${log_allusion || '暂无分类'}`}</div>
                                    </div>
                                }/>
                            </Card>

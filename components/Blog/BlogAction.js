@@ -1,12 +1,5 @@
-import {
-    EyeFilled,
-    FacebookOutlined,
-    GooglePlusOutlined,
-    InstagramOutlined, LikeFilled, MessageFilled,
-    TwitterOutlined,
-    WeiboOutlined
-} from "@ant-design/icons";
-import styles from '../../styles/pages/BlogPreview.module.scss'
+import {EyeFilled, LikeFilled, MessageFilled,} from "@ant-design/icons";
+import styles from '../../styles/pages/BlogPreview/BlogPreview.module.scss'
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import {message} from "antd";
 function BlogAction({log_comm_nums,log_view_nums,log_like_nums,log_id}) {
@@ -17,16 +10,6 @@ function BlogAction({log_comm_nums,log_view_nums,log_like_nums,log_id}) {
     }
     return (
         <div className={styles.blog_info_container}>
-            <div className={styles.blog_action}>
-                分享此文章
-                <div>
-                    <FacebookOutlined />
-                    <TwitterOutlined />
-                    <WeiboOutlined />
-                    <GooglePlusOutlined />
-                    <InstagramOutlined />
-                </div>
-            </div>
             <div>
                 <div className={styles.blog_statstic}>
                     <span><EyeFilled /> 浏览</span>
