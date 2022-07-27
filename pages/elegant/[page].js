@@ -1,10 +1,17 @@
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import ElegantBlogs from "../../components/Elegant/ElegantBlogs";
+import Head from "next/head";
+import CustomHeadTag from "../../components/App/CustomHeadTag";
 /**
  * @description 博文列表 根据页数获取
  */
 function BlogsByPage({ElegantData}) {
-    return <ElegantBlogs ElegantData={ElegantData}/>
+    return(
+        <>
+            <CustomHeadTag title='AD110·出色'/>
+            <ElegantBlogs ElegantData={ElegantData}/>
+        </>
+    )
 }
 export async function getServerSideProps(context) {
     const {params:{page},query:{cateid}} = context

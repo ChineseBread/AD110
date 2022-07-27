@@ -1,8 +1,14 @@
 import ElegantBlogs from "../../components/Elegant/ElegantBlogs";
+import CustomHeadTag from "../../components/App/CustomHeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 
 function MatchByPage({MatchData}) {
-    return <ElegantBlogs ElegantData={MatchData}/>
+    return (
+        <>
+            <CustomHeadTag title='AD110·竞赛'/>
+            <ElegantBlogs ElegantData={MatchData}/>
+        </>
+    )
 }
 export async function getStaticProps(context) {
     const {params:{page}} = context

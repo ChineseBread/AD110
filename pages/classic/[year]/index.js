@@ -1,9 +1,15 @@
-import BlogDataRequest from "../../../uitls/request/BlogDataRequest";
 import {getFormatTime} from "../../../uitls/present/TimeUtils";
 import YearBlogsList from "../../../components/Classic/YearBlogsList";
+import CustomHeadTag from "../../../components/App/CustomHeadTag";
+import BlogDataRequest from "../../../uitls/request/BlogDataRequest";
 
 function YearBlog({YearBlogsData}) {
-    return <YearBlogsList YearBlogsData={YearBlogsData}/>
+    return(
+        <>
+            <CustomHeadTag title='AD110·经典'/>
+            <YearBlogsList YearBlogsData={YearBlogsData}/>
+        </>
+    )
 }
 export async function getStaticProps(context){
     const {params:{year}} = context

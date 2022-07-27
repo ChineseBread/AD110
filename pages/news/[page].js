@@ -1,6 +1,6 @@
+import NewsList from "../../components/News/NewsList";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import NewsDataRequest from "../../uitls/request/NewsDataRequest";
-import NewsList from "../../components/News/NewsList";
 
 function NewsByPage({NewsDataObj}) {
     return <NewsList {...NewsDataObj}/>

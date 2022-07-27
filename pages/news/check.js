@@ -1,46 +1,34 @@
 // 咨询预览
-import {
-    EyeOutlined,
-    FacebookOutlined,
-    GooglePlusOutlined,
-    InstagramOutlined,
-    LinkedinOutlined,
-    TwitterOutlined
-} from "@ant-design/icons";
+import {EyeOutlined} from "@ant-design/icons";
+import Link from "next/link";
 import Image from "next/image";
-import styles from '../../styles/pages/NewsOrBlog.module.scss'
 import {UbbToHtml} from "../../uitls/present/UBBUtils";
+import CustomHeadTag from "../../components/App/CustomHeadTag";
 import NewsDataRequest from "../../uitls/request/NewsDataRequest";
+import ContentStyle from "../../styles/pages/BlogPreview/NewsOrBlog.module.scss";
 import banner from '../../public/static/banner3.png'
-import Head from "next/head";
-import ContentStyle from "../../styles/pages/NewsOrBlog.module.scss";
-function CheckNews({NewsData:{title,cover_image,cate_name,content,author,post_time,view_nums}}) {
+function CheckNews({NewsData:{title,cover_image,cate_name,content,author,post_time,view_nums,cate_id}}) {
     return (
         <div className='page-content font-family'>
-            <Head>
-                <title>{title}</title>
-            </Head>
-            <div className={styles.header}>
+            <CustomHeadTag title={title}/>
+            <div className={ContentStyle.header}>
                 <Image
                     src={NewsDataRequest.getNewsCover(cover_image) || banner}
                     layout='fill'
                     objectFit='cover'
                 />
-                <span className={styles.title}>{title}</span>
+                <div className={ContentStyle.title_container}>
+                    <span className={ContentStyle.title}>{title}</span>
+                </div>
             </div>
-            <div className={styles.info}>
-                <span>{`${author} > ${cate_name}`}</span>
+            <div className={ContentStyle.info}>
+                <Link href='/'><span>AD110</span></Link> {'>'} <Link href={`/elegant?cateid=${cate_id}`}><span>{cate_name}</span></Link>
+            </div>
+            <div className={ContentStyle.bread}>
                 <span>{`发布于 ${post_time}`}</span>
                 <span><EyeOutlined />{view_nums}</span>
             </div>
-            <div className={ContentStyle.bread}>
-                <TwitterOutlined style={{fontSize:18,margin:'0 10px'}}/>
-                <FacebookOutlined style={{fontSize:18,margin:'0 10px'}}/>
-                <InstagramOutlined style={{fontSize:18,margin:'0 10px'}}/>
-                <LinkedinOutlined style={{fontSize:18,margin:'0 10px'}}/>
-                <GooglePlusOutlined style={{fontSize:18,margin:'0 10px'}}/>
-            </div>
-            <div className={styles.ubb_content} dangerouslySetInnerHTML={{__html:UbbToHtml(content)}}/>
+            <div className={`${ContentStyle.ubb_content} ubb-img`} dangerouslySetInnerHTML={{__html:UbbToHtml(content)}}/>
         </div>
     )
 }

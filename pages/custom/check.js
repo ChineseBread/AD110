@@ -1,13 +1,10 @@
 import {Fragment} from 'react';
+import CustomHeadTag from "../../components/App/CustomHeadTag";
 import CustomDataRequest from "../../uitls/request/CustomDataRequest";
-import Head from "next/head";
-
 function CheckCustomPage({CustomPageData:{page_title,page_content}}) {
     return (
         <Fragment>
-            <Head>
-                <title>{page_title}</title>
-            </Head>
+            <CustomHeadTag title={page_title}/>
             <div dangerouslySetInnerHTML={{__html:page_content}}/>
         </Fragment>
     )

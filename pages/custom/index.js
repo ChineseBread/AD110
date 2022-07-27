@@ -1,9 +1,9 @@
 import {useState} from 'react';
-import CustomDataRequest from "../../uitls/request/CustomDataRequest";
 import {Button, Card, Empty, message} from "antd";
-import styles from '../../styles/pages/CustomPage.module.scss'
 import Link from "next/link";
-import Head from "next/head";
+import CustomHeadTag from "../../components/App/CustomHeadTag";
+import CustomDataRequest from "../../uitls/request/CustomDataRequest";
+import styles from '../../styles/pages/CustomPage.module.scss'
 function CustomPageList({CustomPageData:{total,CustomPageList}}) {
     const [list,setList] = useState(CustomPageList)
     const [page,setPage] = useState(1)
@@ -19,9 +19,7 @@ function CustomPageList({CustomPageData:{total,CustomPageList}}) {
     }
     return (
         <div className='page-content font-family'>
-            <Head>
-                <title>AD110自定义</title>
-            </Head>
+            <CustomHeadTag title='AD110'/>
             <Card title='自定义页面'>
                 <div className={styles.custom_page_container}>
                     {list.length >= 1 ? list.map(({page_id,page_title}) => {

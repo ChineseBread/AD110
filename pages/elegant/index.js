@@ -1,10 +1,16 @@
 import ElegantBlogs from "../../components/Elegant/ElegantBlogs";
+import CustomHeadTag from "../../components/App/CustomHeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 /**
  * @description 博文列表
  */
 function Elegant({ElegantData}) {
-    return <ElegantBlogs ElegantData={ElegantData}/>
+    return (
+        <>
+            <CustomHeadTag title='AD110·出色'/>
+            <ElegantBlogs ElegantData={ElegantData}/>
+        </>
+    )
 }
 export async function getServerSideProps(context) {
     //如果出现根据分类id查询且使用服务器渲染

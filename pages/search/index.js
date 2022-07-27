@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
-import SearchDataRequest from "../../uitls/request/SearchDataRequest";
 import {Divider, Empty, List} from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
 import BlogItem from "../../components/Search/BlogItem";
 import UrlItem from "../../components/Search/UrlItem";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Head from "next/head";
+import CustomHeadTag from "../../components/App/CustomHeadTag";
+import SearchDataRequest from "../../uitls/request/SearchDataRequest";
 
 function Search({SearchData:{SearchList,total},query}) {
     const [list,setList] = useState(SearchList)
@@ -25,16 +25,14 @@ function Search({SearchData:{SearchList,total},query}) {
     }
     return (
         <div className='page-content font-family'>
-            <Head>
-                <title>AD110</title>
-            </Head>
+            <CustomHeadTag title='AD110'/>
             {list.length >= 1 ?
             <InfiniteScroll
                 dataLength={list.length}
                 next={getSearchList}
                 hasMore={list.length < total}
-                loader={<Divider plain>🧐 加载中</Divider>}
-                endMessage={<Divider plain/>}
+                loader={<Divider plain>加载中</Divider>}
+                endMessage={ <Divider style={{border:0,margin:'0.7rem 0'}} plain/>}
             >
                 <List
                     itemLayout="vertical"

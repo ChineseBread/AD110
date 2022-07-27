@@ -1,9 +1,16 @@
 //竞赛页面
 import ElegantBlogs from "../../components/Elegant/ElegantBlogs";
+import CustomHeadTag from "../../components/App/CustomHeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 
 function Match({MatchData}) {
-    return <ElegantBlogs ElegantData={MatchData}/>
+    return(
+        <>
+            <CustomHeadTag title='AD110·竞赛'/>
+            <ElegantBlogs ElegantData={MatchData}/>
+        </>
+    )
+
 }
 //博文分类中的竞赛分类id 11 根据分类获取博文即可
 export async function getStaticProps(context) {

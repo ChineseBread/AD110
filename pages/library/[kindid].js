@@ -1,124 +1,90 @@
-import {Fragment, useContext, useEffect, useState} from 'react';
-import {Button, Divider, PageHeader, Collapse, Result} from "antd";
+import {useContext, useEffect, useState} from 'react';
+import {Button, Divider, Empty, PageHeader} from "antd";
 import {useRouter} from "next/router";
-import {EyeOutlined, ArrowLeftOutlined} from "@ant-design/icons";
 import HotLinkHeader from "../../components/Global/HotLinkHeader";
-import LinkDataRequest from "../../uitls/request/LinkDataRequest";
-import styles from '../../styles/pages/LinkInfo.module.scss'
-import ScreenContext from "../../store/ScreenContext";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Head from "next/head";
+import PageBanner from "../../components/Global/PageBanner";
+import PhoneComponent from "../../components/Library/PhoneComponent";
+import PCComponent from "../../components/Library/PCComponent";
+import CustomHeadTag from "../../components/App/CustomHeadTag";
+import ScreenContext from "../../store/ScreenContext";
+import LinkDataRequest from "../../uitls/request/LinkDataRequest";
 import CoverDataRequest from "../../uitls/request/CoverDataRequest";
-import PageBanner from "../../components/App/PageBanner";
-const { Panel } = Collapse;
-function LinkInfo({LibraryData:{HotLinkCategoryList,CategoryListInfo:{kindName,CategoryList,total},kindid,HomePageFooterCover}}) {
+function LinkInfo({LibraryData:{HotLinkCategoryList,UrlListInfo:{kindName,UrlList,total},kindid,HomePageFooterCover}}) {
     const {isPhone} = useContext(ScreenContext)
     const router = useRouter()
-    const [CategoryListInfo,setCategoryListInfo] = useState({CategoryList,hasMore:CategoryList.length < total})
+    const [UrlListInfo,setUrlListInfo] = useState({UrlList,hasMore:UrlList.length < total})
     const [page,setPage] = useState(1)
     useEffect(() =>{
         setPage(1)
-        setCategoryListInfo({CategoryList,hasMore: CategoryList.length < total})
+        setUrlListInfo({UrlList,hasMore: UrlList.length < total})
     },[kindid])
-    const getMoreCategoryList = () => {
-        LinkDataRequest.getCategoryListByKindID(kindid,page + 1).then(result =>{
+    const getMoreUrlList = () => {
+        LinkDataRequest.getUrlListByKindID(kindid,page + 1).then(result =>{
             if (result.Ok){
-                const {CategoryList} = result.CategoryListInfo
-                setCategoryListInfo(CategoryListInfo => {
+                const {UrlList} = result.UrlListInfo
+                setUrlListInfo(UrlListInfo => {
                     return{
-                        CategoryList: [...CategoryListInfo.CategoryList,...CategoryList],
-                        hasMore:CategoryListInfo.CategoryList.length + CategoryList.length < total
+                        UrlList: [...UrlListInfo.UrlList,...UrlList],
+                        hasMore:UrlListInfo.UrlList.length + UrlList.length < total
                     }
                 })
                 setPage(page => page + 1)
             }
         })
     }
+    const onQueryModeChange = mode => {
+        return () => {
+            LinkDataRequest.getUrlListByMode(mode).then(result => {
+                if (result.Ok){
+                    setPage(1)
+                    setUrlListInfo({UrlList: result.UrlListInfo.UrlList,hasMore: false})
+                }
+            })
+        }
+    }
     return (
         <div className={`page-content ${!isPhone ? 'font-family' : ''}`}>
-            <Head>
-                <title>AD110资库</title>
-            </Head>
+            <CustomHeadTag title='AD110·资库'/>
             <HotLinkHeader HotLinkCategoryList={HotLinkCategoryList}/>
             <div>
                 <PageHeader
-                    className="link-info-page-header"
+                    // className="link-info-page-header"
                     title={kindName}
-                    subTitle={`本类目共有${total}个条目 | ★为编辑推荐`}
-                    extra={
-                        <Button type='icon' onClick={() => router.back()} icon={<ArrowLeftOutlined />}/>
+                    subTitle={<>本类目共有{total}个条目 | <span style={{color:'#40a9ff'}}>★</span>为编辑推荐</>}
+                    style={!isPhone ? {padding:'4px 0',borderBottom:'1px solid #8c8c8c'} : {}}
+                    extra={!isPhone &&
+                        <div>
+                            可选列表查询方式:
+                            <Button style={{padding:'0 0.3rem'}} onClick={onQueryModeChange('list_by_random')} type='text'>随机</Button>
+                            <Button style={{padding:'0 0.3rem'}} onClick={onQueryModeChange('list_by_hots')} type='text'>热门</Button>
+                            <Button style={{padding:'0 0.3rem'}} onClick={onQueryModeChange('list_by_recommend')} type='text'>推荐</Button>
+                        </div>
                     }
                 />
             </div>
-            {CategoryList.length >= 1 ?
+            {UrlList.length >= 1 ?
                 <InfiniteScroll
-                    dataLength={CategoryListInfo.CategoryList.length}
-                    next={getMoreCategoryList}
-                    hasMore={CategoryListInfo.hasMore}
-                    loader={<Divider plain>🧐 加载中</Divider>}
-                    endMessage={<Divider plain/>}
+                    dataLength={UrlListInfo.UrlList.length}
+                    next={getMoreUrlList}
+                    hasMore={UrlListInfo.hasMore}
+                    loader={<Divider plain>加载中</Divider>}
+                    endMessage={!isPhone && <Divider style={{border:0,margin:'0.7rem 0'}} plain/>}
                 >
-                    {isPhone ? <PhoneComponent CategoryList={CategoryListInfo.CategoryList}/> : <PCComponent CategoryList={CategoryListInfo.CategoryList}/>}
-                </InfiniteScroll> : <Result status='404' title='暂无数据' extra={<Button type='default' onClick={() => router.replace('/library')}>返回资库</Button>}/>}
+                    {isPhone ? <PhoneComponent UrlList={UrlListInfo.UrlList}/> : <PCComponent UrlList={UrlListInfo.UrlList}/>}
+                </InfiniteScroll> : <div style={{height:'500px',display:'flex',justifyContent:'space-around',flexDirection:'column'}}><Empty title='暂无数据'><Button type='default' onClick={() => router.replace('/library')}>返回资库</Button></Empty></div>}
             <PageBanner url={HomePageFooterCover}/>
         </div>
     )
 }
-function PhoneComponent({CategoryList}){
-    return(
-        <Collapse ghost>
-            {CategoryList.map(({url_id,url_name,url_hits,cool,url_info}) => {
-                return(
-                    <Fragment key={url_id}>
-                        <Panel style={{borderBottom:'1px solid #bfbfbf'}} header={<span style={{fontWeight:700,letterSpacing:0.5}}>{url_name}</span>} extra={
-                            <span style={{color:'#8c8c8c',fontWeight:700}}>
-                                {cool === 1 && "★"}
-                                <EyeOutlined style={{margin:'0 5px 0 10px'}}/>
-                                {url_hits}
-                            </span>
-                        }>
-                            {url_info}
-                        </Panel>
-                    </Fragment>
-                )
-            })}
-        </Collapse>
-    )
-}
-
-function PCComponent({CategoryList}){
-    return(
-        <Fragment>
-            {CategoryList.map(({url_id,url_name,urlvalue,url_hits,iscool_switch,url_info}) => {
-                return (
-                    <Fragment key={url_id}>
-                        <div className={styles.link_info_item}>
-                            <div className={styles.link_info}>
-                                <div><a target='_blank' href={urlvalue}>{url_name}</a></div>
-                                <div>
-                                    {iscool_switch === 1 && "★"}
-                                    <EyeOutlined style={{margin:'0 5px 0 5px'}}/>
-                                    <span>{url_hits}</span>
-                                </div>
-                            </div>
-                            <div className={styles.link_info_content}>
-                                {url_info}
-                            </div>
-                        </div>
-                        <Divider style={{margin:'5px 0',borderBottom:'1px solid #8c8c8c'}}/>
-                    </Fragment>
-                )
-            })}
-        </Fragment>
-    )
-}
 export async function getStaticProps(context) {
     const {params:{kindid}} = context
-    let LibraryData = {HotLinkCategoryList:[],CategoryListInfo:{kindName: '',CategoryList: [],total:0},kindid,HomePageFooterCover:''}
+    let LibraryData = {HotLinkCategoryList:[],UrlListInfo:{kindName: '',UrlList: [],total:0},kindid,HomePageFooterCover:''}
     if (Number.isNaN(parseInt(kindid))) return {props:{LibraryData}}
+
     let libraryResult = await Promise.all([
         LinkDataRequest.getHotLinkCateGory(),
-        LinkDataRequest.getCategoryListByKindID(kindid,1),
+        LinkDataRequest.getUrlListByKindID(kindid,1),
         CoverDataRequest.getHomePageFooterCover()
     ])
     libraryResult.forEach(result => {
