@@ -1,7 +1,7 @@
 import {getImageUrl} from "../request/request";
 import * as ReactDOMServer from "react-dom/server";
-import UBBStyle from '../../styles/pages/NewsOrBlog.module.scss'
-function UbbToHtml(str){
+import UBBStyle from '../../styles/pages/BlogPreview/NewsOrBlog.module.scss'
+function UbbToHtml(str = ''){
     str = str.replace(/</ig,'&lt;');
     str = str.replace(/>/ig,'&gt;');
     str = str.replace(/\n/ig,'<br/>');
@@ -33,7 +33,7 @@ function UbbToHtml(str){
     str = str.replace(/\[url\]([^\[]+)\[\/url\]/ig, '<a href="$1">'+'$1'+'</a>');
     return str;
 }
-function UBBToIntro(str){
+function UBBToIntro(str = ''){
     str = str.replace(/</ig,'');
     str = str.replace(/>/ig,'');
     str = str.replace(/\n/ig,'');

@@ -1,4 +1,4 @@
-import {doDataRequest, getImageUrl} from "./request";
+import {doDataRequest, doRequest, getImageUrl} from "./request";
 
 class BlogDataRequest{
 
@@ -31,8 +31,8 @@ class BlogDataRequest{
 		return new Promise(async (resolve,reject) => {
 		    try {
 				let result = await doDataRequest({url:'/blog_content/blog_overview'})
-				if (Array.isArray(result)){
-					resolve({Ok:true,Blogs:result})
+				if (result.hasOwnProperty('Top')){
+					resolve({Ok:true,HomePageBlogs:result})
 				}else{
 					resolve({Ok:false})
 				}
@@ -131,10 +131,10 @@ class BlogDataRequest{
 			}
 		})
 	}
-	static sendBlogComment(logid,nickname,comment){
+	static sendBlogComment(logid,nickname,comment,website,email){
 		return new Promise(async (resolve,reject) => {
 		    try {
-				let result = await doDataRequest({url:'/blog_comment/write_comment',data:{logid,nickname,comment}})
+				let result = await doDataRequest({url:'/blog_comment/write_comment',data:{logid,nickname,comment,website,email}})
 				if (result.Ok){
 					resolve({Ok:true,comm_id:result.Data.commid,comm_postip:result.Data.ip})
 				}else{
@@ -147,7 +147,7 @@ class BlogDataRequest{
 	}
 	static likeBlog(logid){
 		return new Promise(async (resolve,reject) => {
-			let result = await doDataRequest({url:'/blog_content/like_blog',data:{logid}})
+			let result = await doRequest({url:'/blog_content/like_blog',data:{logid}})
 			resolve({Ok:result.Ok,Msg:result.Msg || '服务器异常请稍后'})
 		})
 	}

@@ -7,11 +7,11 @@ class DataRequest{
         return Promise.all([
             LinkDataRequest.getHotLinkCateGory(),
             LinkDataRequest.getNewIndexLink(20),
-            // LinkDataRequest.getEditorRecommend(20),
+            LinkDataRequest.getEditorRecommend(40),
             // LinkDataRequest.getLinkCategory(40),
             LinkDataRequest.getHotClickLink(100),
             // LinkDataRequest.getLinkCategoryAndLink(10),
-            // CoverDataRequest.getRecommendCover(),
+            CoverDataRequest.getRecommendCover(),
             CoverDataRequest.getNewlyIndexLinkCover(),
             CoverDataRequest.getHotClickCover()
         ])
@@ -19,11 +19,12 @@ class DataRequest{
     static getHomePageData(){
         return Promise.all([
             BlogDataRequest.getHomePageBlogs(),
-            LinkDataRequest.getEditorRecommend(20),
+            LinkDataRequest.getEditorRecommend(40),
+            LinkDataRequest.getAuthorRecommend(20),
             LinkDataRequest.getHotClickLink(100),
             CoverDataRequest.getRecommendCover(),
             CoverDataRequest.getHotClickCover(),
-
+            CoverDataRequest.getHomePageFooterCover()
         ])
     }
     static getBlogsPreviewData(blogid){

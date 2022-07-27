@@ -1,4 +1,4 @@
-import {doDataRequest} from "./request";
+import {doDataRequest, doRequest} from "./request";
 class LinkDataRequest{
 	/**
 	 * @description 获取热门链接分类
@@ -90,17 +90,26 @@ class LinkDataRequest{
 			}
 		})
 	}
-	/**
-	 * @description 根据urlid获取链接信息
-	 * @param urlid
-	 * @returns {Promise<unknown>}
-	 */
-	static getLinkInfoByLinkID(urlid){
+	// static getUrlInfoByUrlID(urlid){
+	// 	return new Promise(async (resolve,reject) => {
+	// 		try {
+	// 			let result = await doDataRequest({url:"/web_urls/get_info_by_id",data:{urlid},method:'GET'})
+	// 			if (result?.Ok){
+	// 				resolve({Ok:true,LinkInfoList:result.Data || {}})
+	// 			}else{
+	// 				resolve({Ok:false})
+	// 			}
+	// 		}catch (e){
+	// 			resolve({Ok:false})
+	// 		}
+	// 	})
+	// }
+	static getUrlListByKindID(kindid,page){
 		return new Promise(async (resolve,reject) => {
 			try {
-				let result = await doDataRequest({url:"/web_urls/get_info_by_id",data:{urlid},method:'GET'})
-				if (result?.Ok){
-					resolve({Ok:true,LinkInfoList:result.Data || {}})
+				let result = await doDataRequest({url:'/web_kind/list_by_kindid',data:{kindid,page},method:'GET'})
+				if (result.hasOwnProperty('Cate_Name')){
+					resolve({Ok:true,UrlListInfo:{kindName:result.Cate_Name,UrlList: result.Data || [],total:result.Total_Count}})
 				}else{
 					resolve({Ok:false})
 				}
@@ -109,14 +118,13 @@ class LinkDataRequest{
 			}
 		})
 	}
-	static getCategoryListByKindID(kindid,page){
+	static getUrlListByMode(mode){
 		return new Promise(async (resolve,reject) => {
-			try {
-				let result = await doDataRequest({url:'/web_kind/list_by_kindid',data:{kindid,page},method:'GET'})
-				if (result.hasOwnProperty('Cate_Name')){
-					resolve({Ok:true,CategoryListInfo:{kindName:result.Cate_Name,CategoryList: result.Data || [],total:result.Total_Count}})
-				}else{
-					resolve({Ok:false})
+		    try {
+				let result = await doDataRequest({url:`/web_urls/${mode}`,data:{limit:20}})
+				if (result.Ok){
+					let kindName = {'list_by_random':'随机','list_by_hots':'热门','list_by_recommend':'推荐'}[mode]
+					resolve({Ok:true,UrlListInfo:{kindName,UrlList:result.Data || [],total:20}})
 				}
 			}catch (e){
 				resolve({Ok:false})
@@ -129,14 +137,9 @@ class LinkDataRequest{
 	static getEditorRecommend(limit){
 		return new Promise(async (resolve,reject) => {
 			try {
-				let result = await doDataRequest({url:'/web_urls/recommend_urls',data:{limit},method:'GET'})
-				if(result?.length){
-					const kindList = result.map(({kind_name,kind_id}) => ({key:kind_id,tab:kind_name}))
-					const kindUrls = {}
-					result.forEach(({kind_id,kind_urls}) => {
-						kindUrls[kind_id] = kind_urls
-					})
-					resolve({Ok:true,EditorRecommendLink:{kindList,kindUrls}})
+				let result = await doDataRequest({url:'/web_urls/list_by_random',data:{limit},method:'GET'})
+				if(result.Ok){
+					resolve({Ok:true,EditorRecommendLink:result.Data || []})
 				}else {
 					resolve({Ok:false})
 				}
@@ -146,5 +149,31 @@ class LinkDataRequest{
 			}
 		})
 	}
+	static getAuthorRecommend(limit){
+		return new Promise(async (resolve,reject) => {
+		    try {
+				let result = await doDataRequest({url:'/web_urls/author_recommend',data:{limit}})
+				if (Array.isArray(result)){
+					resolve({Ok:true,AuthorRecommend:result})
+				}else {
+					resolve({Ok:false})
+				}
+			}catch (e){
+				resolve({Ok:false})
+			}
+		})
+	}
+	// 点赞资料库下分类的url
+	static likeUrl(urlid){
+		return new Promise(async (resolve,reject) => {
+		    try {
+				let result = await doRequest({url:'/web_urls/like_url',data:{urlid}})
+				resolve({Ok:result.Ok,Msg:result.Msg || '服务器异常请稍后'})
+			}catch (e){
+				resolve({Ok:false})
+			}
+		})
+	}
+
 }
 export default LinkDataRequest
