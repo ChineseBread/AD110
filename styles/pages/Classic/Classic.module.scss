@@ -1,0 +1,40 @@
+.year_blogs_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .year_blog_item{
+    width: 200px;
+    height: 375px;
+    padding: 5px 0;
+    .year_blog_description_container{
+      .year_blog_description{
+        height: 150px;
+        width: 175px;
+        @media screen and (max-width: 624px) {
+          width: auto;
+        }
+        font-size: 11px;
+        display: -webkit-box;
+        -webkit-line-clamp: 8;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .year_blog_info{
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    @media screen and (max-width: 824px){
+      width: 24%;
+      height: auto;
+    }
+    @media screen and (max-width: 624px){
+      width:49%;
+      height: auto;
+    }
+
+  }
+}

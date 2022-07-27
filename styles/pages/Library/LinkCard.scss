@@ -1,0 +1,102 @@
+.link-card{
+  //margin: 10px 0;
+  .link-item{
+    width:25%;
+    display: inline-block;
+    margin: 2px 0;
+    padding-right: 5px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    a{
+      color: #262626;
+      &:hover{
+        color: #40a9ff;
+      }
+    }
+  }
+}
+//头部卡片
+.link-card-header{
+  .ant-card-head{
+    @media screen and (min-width: 1000px){
+      padding: 0;
+    }
+  }
+  .ant-card{
+    .ant-card-head-title{
+      color:#595959;
+      font-size:30px;
+      letter-spacing:1px
+    }
+    .ant-card-body{
+      background-color:#262626;
+      color:#fff;
+      padding:5px 10px;
+      text-align: left;
+      .hot-link-item{
+        display: inline-block;
+        font-weight: 500;
+        padding: 2px 5px;
+        cursor: pointer;
+        transition: color ease-in-out 0.2s;
+        a{
+          color: #f2f2f2;
+          &:hover{
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 下方链接卡片
+.link-card-body{
+
+  .ant-card-head{
+    //margin-top: 10px;
+    line-height: 40px;
+    //标题和分界线
+    .ant-card-head-title{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+      color:#40a9ff;
+      font-size:14px;
+      letter-spacing:1px;
+      span:nth-child(1){
+        margin-right: 10px;
+      }
+      span:nth-child(2){
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px solid #595959;
+      }
+    }
+    @media screen and (min-width: 1000px){
+      padding:0;
+    }
+    border-bottom: 0;
+  }
+
+  //link卡片手机端电脑端内边距
+  .ant-card-body{
+    padding:0 10px;
+    @media screen and (min-width: 1000px){
+      padding:5px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 900px){
+  .link-card{
+    width: 100%;
+    .link-item{
+      margin: 0;
+      width: calc(50% - 10px);
+    }
+  }
+}

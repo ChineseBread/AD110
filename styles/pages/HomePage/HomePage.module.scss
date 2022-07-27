@@ -1,0 +1,101 @@
+.home_page_title{
+  text-align: center;
+  margin: 20px 0 40px 0;
+  color: #fff;
+  font-family: siyuansongti;
+  .title_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .title_span{
+      line-height: 70px;
+      font-size: 50px;
+      user-select: none;
+      cursor: pointer;
+      max-width: 900px;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+      word-break: break-all;
+    }
+  }
+}
+
+.home_page_url_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .home_page_url_item{
+    width: 23.5%;
+    margin: 15px 0;
+    height: 180px;
+    padding: 0 10px;
+    border: 1px solid #8c8c8c;
+    font-size: 12px;
+
+    .logo_container{
+      height: auto;
+      margin-bottom: 5px;
+      font-size: 40px;
+      text-align: center;
+      user-select: none;
+      overflow: hidden;
+    }
+    .url_info_container{
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid #595959;
+      //url名称
+      div:nth-child(1){
+        max-width: 50%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        a{
+          color: #595959;
+          &:hover{
+            color: #40a9ff;
+          }
+        }
+      }
+      //url介绍
+      div:nth-child(2){
+        -webkit-line-clamp: 4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+@media screen and (max-width: 900px){
+  //头部标题
+  .home_page_title{
+    margin: 0;
+    height: 140px;
+    .title_container{
+      height: 70%;
+      .title_span{
+        font-size: 20px;
+        line-height: initial;
+        max-width: 80%;
+      }
+    }
+  }
+
+  .home_page_url_container{
+    padding: 10px;
+    .home_page_url_item{
+      width: 48%;
+      margin:5px 0;
+      height: 140px;
+      .logo_container{
+        font-size: 18px;
+      }
+    }
+  }
+}

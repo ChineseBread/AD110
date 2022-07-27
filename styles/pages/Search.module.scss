@@ -12,6 +12,9 @@
   position: relative;
   width: 280px;
   height: 160px;
+  @media screen and (max-width: 1000px){
+    width: 90vw;
+  }
 }
 .search_item_content{
   transition: color ease-in-out 0.2s;

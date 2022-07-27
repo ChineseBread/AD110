@@ -1,0 +1,39 @@
+.custom-header-white input{
+  color: #fff;
+}
+.custom-header-dark input{
+  color: #141414;
+}
+//甲方要求字大,狠狠的大
+@media screen and (min-width: 1000px){
+  .header-drop-down{
+    width: 180px;
+    .ant-dropdown-menu{
+      height: 250px;
+      li{
+        height: 40px;
+        font-size: 25px;
+      }
+    }
+  }
+  .header-menu{
+    .ant-menu-horizontal{
+      li{
+        font-size: 18px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .header-drop-down{
+    width: 170px;
+  }
+}
+//.home-page-drop-down ul{
+//  width: 250px;
+//  height: 350px;
+//}
+//.home-page-drop-down ul li{;
+//  font-size: 25px;
+//  height: 57px;
+//}
