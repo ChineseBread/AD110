@@ -21,7 +21,7 @@ function NewsCarousel({Blogs}){
     return (
         <div className={styles.vertical}>
             <Carousel autoplay speed={700} autoplaySpeed={2000} pauseOnHover={true}>
-                {Blogs.map(({log_id,log_title,log_author,log_cover_image,log_poster}) => {
+                {Blogs.map(({log_id,log_title,log_author,log_cover_image,log_poster_image}) => {
                     return (
                         <Link key={log_id} href={`/section?articleid=${log_id}`}>
                             <div className={styles.news_container} >
@@ -30,13 +30,14 @@ function NewsCarousel({Blogs}){
                                     <span>By {log_author    }</span>
                                 </div>
                                 <Image
-                                    src={BlogDataRequest.getBlogCover(log_poster || log_cover_image) || banner1}
+                                    src={BlogDataRequest.getBlogCover(log_poster_image || log_cover_image) || banner1}
                                     priority={true}
                                     alt={log_title}
                                     width={420}
                                     height={600}
                                     layout='responsive'
                                     objectFit='cover'
+                                    quality={80}
                                 />
                             </div>
                         </Link>

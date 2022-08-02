@@ -1,10 +1,13 @@
 .header{
-  height: 400px;
+  height: 350px;
   position: absolute;
   width: 100%;
   left: 0;
   top: 0;
-  user-select: none;
+  -moz-user-select:none;/*火狐*/
+  -webkit-user-select:none;/*webkit浏览器*/
+  -ms-user-select:none;/*IE10*/
+  user-select:none;
   .title_container{
     width: 100%;
     padding: 0 10px;
@@ -33,7 +36,7 @@
 }
 //分类名
 .info{
-  margin: 350px auto 0 auto;
+  margin: 300px auto 0 auto;
   padding: 0 10px;
   max-width: 100%;
   overflow: hidden;
@@ -53,6 +56,7 @@
 }
 //文章摘要
 .intro{
+  color:#40a9ff;
   max-width: 100%;
   margin: 20px auto 10px auto;
   display: -webkit-box;
@@ -84,16 +88,6 @@
     max-width: 100%;
     word-break: break-all;
   }
-  //.ubb_img_container{
-  //  display: flex;
-  //  justify-content: space-around;
-  //  max-width: 900px;
-  //  //max-height: 506.25px;
-  //  img{
-  //    width: 100%;
-  //    object-fit: contain;
-  //  }
-  //}
 }
 @media screen and (max-width: 1000px){
   .header{
@@ -111,9 +105,10 @@
   }
   .intro{
     padding: 0 10px;
+    margin: 10px auto;
   }
   .info{
-    margin: 120px auto 10px auto;
+    margin: 110px auto 10px auto;
   }
   .ubb_content{
     width: 100%;

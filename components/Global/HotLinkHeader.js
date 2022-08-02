@@ -2,44 +2,6 @@ import {Card} from "antd";
 import Link from "next/link";
 import {Fragment, useContext} from "react";
 import ScreenContext from "../../store/ScreenContext";
-const LinkArr = [
-    {
-        title:'AD110 资库点击排行TOP100',
-        pageid:16
-    },
-    {
-        title:'新录入条目New TOP50',
-        pageid:7
-    },
-    {
-        title:'新录入条目New TOP50网天下(大众网址)',
-        pageid:8
-    },
-    {
-        title:'专业竞赛资讯',
-        pageid:9
-    },
-    {
-        title:'声音(评论)',
-        pageid:10
-    },
-    {
-        title:'读库-经典-史记',
-        pageid:11
-    },
-    {
-        title:'读书-好书推介',
-        pageid:12
-    },
-    {
-        title:'微信群',
-        pageid:14
-    },
-    {
-        title:'AD110年度(网站)推荐',
-        pageid:15
-    },
-]
 function HotLinkHeader({HotLinkCategoryList}) {
     const {isPhone} = useContext(ScreenContext)
     return (
@@ -53,21 +15,29 @@ function HotLinkHeader({HotLinkCategoryList}) {
                         </Fragment>
                     )
                 })}
-                {LinkArr.map(({title,pageid},index) => {
-                    return (
-                        <Fragment key={pageid}>
-                            <Link href={`/custom/check?pageid=${pageid}`}>
-                                <span className='hot-link-item'>{title}</span>
-                            </Link>
-                            {index <= 7 && <span>|</span>}
-                        </Fragment>
-                    )
-                })}
+                <br/>
+                <Link href='/custom/check?pageid=7'>
+                    <span className='hot-link-item'>网天下 (大众网址)</span>
+                </Link>
+                <span>|</span>
+                <Link href='/custom/check?pageid=14'>
+                    <span className='hot-link-item'>社交群</span>
+                </Link>
+                <span>|</span>
+                <Link href='/library/clickRank'>
+                    <span className='hot-link-item'>AD110·资库点击排行 TOP100</span>
+                </Link>
+                <span>|</span>
+                <Link href='/library/newlyIndexedRank'>
+                    <span className='hot-link-item'>新录入条目 New TOP50</span>
+                </Link>
+                <span>|</span>
+                <Link href='/#recommend'>
+                    <span className='hot-link-item'>AD110 年度 (网站) 推荐</span>
+                </Link>
             </Card>
         </div>
     )
 }
-function Category(){
 
-}
 export default HotLinkHeader;

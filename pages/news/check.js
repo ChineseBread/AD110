@@ -2,12 +2,11 @@
 import {EyeOutlined} from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
-import {UbbToHtml} from "../../uitls/present/UBBUtils";
 import CustomHeadTag from "../../components/App/CustomHeadTag";
 import NewsDataRequest from "../../uitls/request/NewsDataRequest";
 import ContentStyle from "../../styles/pages/BlogPreview/NewsOrBlog.module.scss";
-import banner from '../../public/static/banner3.png'
-function CheckNews({NewsData:{title,cover_image,cate_name,content,author,post_time,view_nums,cate_id}}) {
+import banner from '../../public/static/banner3.jpg'
+function CheckNews({NewsData:{title,cover_image,cate_name,content,post_time,view_nums,cate_id}}) {
     return (
         <div className='page-content font-family'>
             <CustomHeadTag title={title}/>
@@ -22,13 +21,13 @@ function CheckNews({NewsData:{title,cover_image,cate_name,content,author,post_ti
                 </div>
             </div>
             <div className={ContentStyle.info}>
-                <Link href='/'><span>AD110</span></Link> {'>'} <Link href={`/elegant?cateid=${cate_id}`}><span>{cate_name}</span></Link>
+                <Link href='/news'><span>AD110·资讯</span></Link> {'>'} <Link href={`/elegant?cateid=${cate_id}`}><span>{cate_name}</span></Link>
             </div>
             <div className={ContentStyle.bread}>
                 <span>{`发布于 ${post_time}`}</span>
                 <span><EyeOutlined />{view_nums}</span>
             </div>
-            <div className={`${ContentStyle.ubb_content} ubb-img`} dangerouslySetInnerHTML={{__html:UbbToHtml(content)}}/>
+            <div className={`${ContentStyle.ubb_content} ubb-img`} dangerouslySetInnerHTML={{__html:content}}/>
         </div>
     )
 }

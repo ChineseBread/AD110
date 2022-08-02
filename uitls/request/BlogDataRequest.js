@@ -41,20 +41,20 @@ class BlogDataRequest{
 			}
 		})
 	}
-	static getRandomBlogs(limit = 4){
-		return new Promise(async (resolve,reject) => {
-		    try {
-				let result = await doDataRequest({url:'/blog_content/get_random',data:{limit}})
-				if (Array.isArray(result.Data)){
-					resolve({Ok:true,RandomBlogs:result.Data})
-				}else{
-					resolve({Ok:false})
-				}
-			}catch (e){
-				resolve({Ok:false})
-			}
-		})
-	}
+	// static getRandomBlogs(limit = 4){
+	// 	return new Promise(async (resolve,reject) => {
+	// 	    try {
+	// 			let result = await doDataRequest({url:'/blog_content/get_random',data:{limit}})
+	// 			if (Array.isArray(result.Data)){
+	// 				resolve({Ok:true,RandomBlogs:result.Data})
+	// 			}else{
+	// 				resolve({Ok:false})
+	// 			}
+	// 		}catch (e){
+	// 			resolve({Ok:false})
+	// 		}
+	// 	})
+	// }
 	/**
 	 * @description 根据分类获取博文
 	 */
@@ -111,7 +111,7 @@ class BlogDataRequest{
 		return new Promise(async (resolve,reject) => {
 		    try {
 				let result = await doDataRequest({url:'/blog_content/get_info_by_id',data:{logid}})
-				resolve({Ok:result.Ok,BlogData:result.Data || {}})
+				resolve({Ok:result.Ok,BlogData:result.Data || {},Recommend:result.Recommend || []})
 			}catch (e){
 				resolve({Ok:false})
 			}
@@ -131,26 +131,7 @@ class BlogDataRequest{
 			}
 		})
 	}
-	static sendBlogComment(logid,nickname,comment,website,email){
-		return new Promise(async (resolve,reject) => {
-		    try {
-				let result = await doDataRequest({url:'/blog_comment/write_comment',data:{logid,nickname,comment,website,email}})
-				if (result.Ok){
-					resolve({Ok:true,comm_id:result.Data.commid,comm_postip:result.Data.ip})
-				}else{
-					resolve({Okf:false})
-				}
-			}catch (e) {
-				resolve({Ok:false})
-			}
-		})
-	}
-	static likeBlog(logid){
-		return new Promise(async (resolve,reject) => {
-			let result = await doRequest({url:'/blog_content/like_blog',data:{logid}})
-			resolve({Ok:result.Ok,Msg:result.Msg || '服务器异常请稍后'})
-		})
-	}
+
 	static getBlogCover(url){
 		return getImageUrl(url)
 	}

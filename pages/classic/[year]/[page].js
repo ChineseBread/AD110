@@ -2,6 +2,7 @@ import {getFormatTime} from "../../../uitls/present/TimeUtils";
 import YearBlogsList from "../../../components/Classic/YearBlogsList";
 import CustomHeadTag from "../../../components/App/CustomHeadTag";
 import BlogDataRequest from "../../../uitls/request/BlogDataRequest";
+import revalidateTime from "../../../config/revalidate";
 
 function YearBlogByPage({YearBlogsData}) {
     return (
@@ -25,7 +26,7 @@ export async function getStaticProps(context) {
         YearBlogsData.BlogsData = YearBlogsResult.BlogsData
     }
     return {
-        props: {YearBlogsData},revalidate:21600
+        props: {YearBlogsData},revalidate:revalidateTime
     }
 }
 export async function getStaticPaths(){

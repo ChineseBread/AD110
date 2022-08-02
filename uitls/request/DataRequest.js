@@ -31,7 +31,7 @@ class DataRequest{
         return Promise.all([
             BlogDataRequest.getBlogPreviewDataByBlogID(blogid),
             BlogDataRequest.getBlogCommentsByBlogID(blogid),
-            BlogDataRequest.getRandomBlogs()
+            // BlogDataRequest.getRandomBlogs()
         ])
     }
 }

@@ -16,7 +16,7 @@ export default function CustomFooter(props) {
 				<Link href='/custom/check?pageid=5'>关于 AD110.com</Link> | <Link href='/custom/check?pageid=5'>联系 AD110.com</Link>
 			</span>
 			<span>
-				<Link href='/custom/check?pageid=3'>广告投放</Link> | <Link href='/custom/check?pageid=4'>投稿</Link>  (包括文章、作品或自荐) | <Link href='/custom/check?pageid=3'>录入网址</Link> | <Link href='/custom/check?pageid=5'>报错</Link> | <Link href='/custom/check?pageid=5'>帮助</Link>
+				<Link href='/custom/check?pageid=3'>广告投放</Link> | <Link href='/custom/check?pageid=4'>投稿</Link>  (包括文章、作品或自荐) | <Link href='/uploadurl'>录入网址</Link> | <Link href='/custom/check?pageid=5'>报错</Link> | <Link href='/custom/check?pageid=5'>帮助</Link>
 			</span>
 			<span>
 				<Link href='/custom/check?pageid=5'>Part of the ooogo.com Family</Link> | <Link href='/custom/check?pageid=5'>@2018 AD110.com</Link>

@@ -1,13 +1,13 @@
-import {Fragment, useEffect} from 'react'
+import {Fragment, useState, useEffect, useContext} from 'react'
 import {Button, Dropdown, Input, Menu} from "antd";
 import {SearchOutlined, UnorderedListOutlined} from "@ant-design/icons";
 import {useRouter} from "next/router";
 import Image from "next/image";
 import Link from "next/link";
-import {useState} from "react";
 import logo from '../../public/static/logo.png'
 import logoWhite from '../../public/static/logo_white.png'
 import styles from "../../styles/app/CustomHeader.module.scss"
+import ScreenContext from "../../store/ScreenContext";
 const {Search} = Input
 const styleArr = ['/','/section','/news/check']
 const HomeHeader = {
@@ -33,6 +33,7 @@ export default function CustomHeader() {
 	const router = useRouter()
 	const [style,setStyle] = useState(styleArr.some(e => e === router.pathname))
 	const [isFixed,setFixed] = useState(false)
+	const {isPhone} = useContext(ScreenContext)
 	useEffect(() => {
 		setStyle(styleArr.some(e => e === router.pathname))
 	},[router.pathname])
@@ -40,10 +41,10 @@ export default function CustomHeader() {
 		let clientHeight = document.documentElement.clientHeight
 		const listener = () => {
 			let scrollTop = document.documentElement.scrollTop
-			if ((scrollTop / clientHeight).toFixed(2) > 0.1){
+			if ((scrollTop / clientHeight).toFixed(2) > 0.1 || (isPhone && scrollTop >= 150)){
 				setFixed(true)
 			}
-			if ((scrollTop / clientHeight).toFixed(2) <= 0.1) setFixed(false)
+			if ((scrollTop / clientHeight).toFixed(2) <= 0.1 || (isPhone && scrollTop <= 50)) setFixed(false)
 		}
 		document.addEventListener('scroll',listener)
 		return () => document.removeEventListener('scroll',listener)

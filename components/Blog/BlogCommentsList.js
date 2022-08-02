@@ -4,6 +4,7 @@ import {getImageUrl} from "../../uitls/request/request";
 import {getTimeFromNow} from "../../uitls/present/TimeUtils";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import BlogStyle from "../../styles/pages/BlogPreview/BlogPreview.module.scss";
+import OperationRequest from "../../uitls/request/OperationRequest";
 const {TextArea} = Input
 
 function BlogCommentsList({log_id,CommentsList,total}) {
@@ -15,7 +16,7 @@ function BlogCommentsList({log_id,CommentsList,total}) {
         setComments(CommentsList)
     },[log_id])
     const onFinish = ({name,comment,website,email}) => {
-        BlogDataRequest.sendBlogComment(log_id,name,comment,website,email).then(result => {
+        OperationRequest.sendBlogComment(log_id,name,comment,website,email).then(result => {
             if (result.Ok){
                 message.success('评论成功,请等待审核')
             }else{
@@ -59,18 +60,18 @@ function BlogCommentsList({log_id,CommentsList,total}) {
                    <Form.Item name='website' label='网址(可选)'>
                        <Input/>
                    </Form.Item>
-                   <Form.Item name='comment' rules={[{required:true,message:'评论不能为空'}]}>
+                   <Form.Item name='comment' label='评论' rules={[{required:true,message:'评论不能为空'}]}>
                        <TextArea rows={5} style={{resize:'none'}}/>
                    </Form.Item>
                    <Form.Item name='rule' rules={[() => ({
                        validator(_,value) {
-                           if (value[0] !== 'follow') return Promise.reject(new Error('请您遵守以上守则后发表评论'))
+                           if (!value || value[0] !== 'follow') return Promise.reject(new Error('请您遵守以上守则后发表评论'))
                            return Promise.resolve()
                        },
                    })]}>
                        <Checkbox.Group>
                            <Checkbox value='follow'>
-                               <span>AD110不会基于评论和不同观点而删改评论。但所有评论请遵循以下准则:1.以个人身份就AD110的咨讯内容及报道所涉及的话题发表评论。2.不得在评论区散发纯属推销或宣传的讯息。3.不得大量转抄他人言论和文章。4.不得使用任何肮脏和亵渎的措辞。5.不得进行人身攻击,及不允许使用侮辱任何种族和民族的言论。6.不但煽动暴力和议论政治</span>
+                               <span>AD110 不会基于批评和不同观点而删改评论，但所有评论请遵循以下准则：1. 以个人身份就 AD110 的内容及报道所涉及的话题发表评论；2. 不得在评论区散发纯属推销或宣传的简讯；3. 不得大量转抄他人言论和文章；4. 不得使用任何肮脏和亵渎的措辞； 5. 不得进行人身攻击，及不允许使用侮辱任何种族和民族的言论；6. 不得煽动暴力和议论政治。</span>
                            </Checkbox>
                        </Checkbox.Group>
                    </Form.Item>

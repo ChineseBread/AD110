@@ -1,8 +1,8 @@
 import {useContext, useEffect, useState} from 'react';
 import {Button, Divider, Empty, PageHeader} from "antd";
 import {useRouter} from "next/router";
-import HotLinkHeader from "../../components/Global/HotLinkHeader";
 import InfiniteScroll from "react-infinite-scroll-component";
+import HotLinkHeader from "../../components/Global/HotLinkHeader";
 import PageBanner from "../../components/Global/PageBanner";
 import PhoneComponent from "../../components/Library/PhoneComponent";
 import PCComponent from "../../components/Library/PCComponent";
@@ -10,6 +10,7 @@ import CustomHeadTag from "../../components/App/CustomHeadTag";
 import ScreenContext from "../../store/ScreenContext";
 import LinkDataRequest from "../../uitls/request/LinkDataRequest";
 import CoverDataRequest from "../../uitls/request/CoverDataRequest";
+import revalidateTime from "../../config/revalidate";
 function LinkInfo({LibraryData:{HotLinkCategoryList,UrlListInfo:{kindName,UrlList,total},kindid,HomePageFooterCover}}) {
     const {isPhone} = useContext(ScreenContext)
     const router = useRouter()
@@ -35,7 +36,7 @@ function LinkInfo({LibraryData:{HotLinkCategoryList,UrlListInfo:{kindName,UrlLis
     }
     const onQueryModeChange = mode => {
         return () => {
-            LinkDataRequest.getUrlListByMode(mode).then(result => {
+            LinkDataRequest.getUrlListByMode(mode,kindid).then(result => {
                 if (result.Ok){
                     setPage(1)
                     setUrlListInfo({UrlList: result.UrlListInfo.UrlList,hasMore: false})
@@ -44,7 +45,7 @@ function LinkInfo({LibraryData:{HotLinkCategoryList,UrlListInfo:{kindName,UrlLis
         }
     }
     return (
-        <div className={`page-content ${!isPhone ? 'font-family' : ''}`}>
+        <div className='page-content font-family'>
             <CustomHeadTag title='AD110·资库'/>
             <HotLinkHeader HotLinkCategoryList={HotLinkCategoryList}/>
             <div>
@@ -57,7 +58,7 @@ function LinkInfo({LibraryData:{HotLinkCategoryList,UrlListInfo:{kindName,UrlLis
                         <div>
                             可选列表查询方式:
                             <Button style={{padding:'0 0.3rem'}} onClick={onQueryModeChange('list_by_random')} type='text'>随机</Button>
-                            <Button style={{padding:'0 0.3rem'}} onClick={onQueryModeChange('list_by_hots')} type='text'>热门</Button>
+                            <Button style={{padding:'0 0.3rem'}} onClick={onQueryModeChange('list_by_hot')} type='text'>热门</Button>
                             <Button style={{padding:'0 0.3rem'}} onClick={onQueryModeChange('list_by_recommend')} type='text'>推荐</Button>
                         </div>
                     }
@@ -95,7 +96,7 @@ export async function getStaticProps(context) {
     })
     return {
         props: {LibraryData},
-        revalidate:1800
+        revalidate:revalidateTime
     }
 }
 export async function getStaticPaths() {

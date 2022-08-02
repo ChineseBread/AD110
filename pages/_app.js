@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }) {
                      <div className='page-content-container'>
                         <Component {...pageProps} />
                      </div>
-                     <div className='page-footer'>
+                     <div className='page-footer font-family'>
                         <CustomFooter/>
                      </div>
                      <BackTop>

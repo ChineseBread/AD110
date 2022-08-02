@@ -20,7 +20,7 @@ function HomePagePhoneHeader({Hot,Articles,News,Recruit}) {
 function NewsCarousel({Hot}){
     return(
         <Carousel dots={false} autoplay speed={700} autoplaySpeed={2000} pauseOnHover={true}>
-            {Hot.map(({log_id,log_title,log_author,log_cover_image,log_poster}) => {
+            {Hot.map(({log_id,log_title,log_author,log_cover_image,log_poster_image}) => {
                 return (
                     <Link key={log_id} href={`/section?articleid=${log_id}`}>
                         <div className={styles.left_item}>
@@ -29,7 +29,7 @@ function NewsCarousel({Hot}){
                                 <span>By {log_author}</span>
                             </div>
                             <Image
-                                src={BlogDataRequest.getBlogCover(log_poster || log_cover_image) || VerticalBanner}
+                                src={BlogDataRequest.getBlogCover(log_poster_image || log_cover_image) || VerticalBanner}
                                 priority={true}
                                 alt={log_title}
                                 objectFit='cover'
@@ -47,7 +47,7 @@ function NewsVertical({Articles}){
         <div className={styles.right_container}>
             {Articles.map(({log_id,log_title,log_cover_image,log_poster}) => {
                 return (
-                    <Link href={`/section?articleid=${log_id}`}>
+                    <Link key={log_id} href={`/section?articleid=${log_id}`}>
                         <div className={styles.right_item}>
                             <div className={styles.news_content}>
                                 <span>{log_title}</span>
@@ -71,20 +71,16 @@ function ConciseNews({News,Recruit}){
         <div className={styles.concise}>
             {News.map(({log_id,log_title}) => {
                 return (
-                    <Fragment key={log_id}>
-                        <div className={styles.concise_item}>
-                            <Link href={`/section?articleid=${log_id}`}>{log_title}</Link>
-                        </div>
-                    </Fragment>
+                    <div key={log_id} className={styles.concise_item}>
+                        <Link href={`/section?articleid=${log_id}`}>{log_title}</Link>
+                    </div>
                 )
             })}
             {Recruit.map(({log_id,log_title}) => {
                 return (
-                    <Fragment key={log_id}>
-                        <div className={styles.concise_item}>
-                            <Link href={`/section?articleid=${log_id}`}>{log_title}</Link>
-                        </div>
-                    </Fragment>
+                    <div key={log_id} className={styles.concise_item}>
+                        <Link href={`/section?articleid=${log_id}`}>{log_title}</Link>
+                    </div>
                 )
             })}
         </div>

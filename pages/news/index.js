@@ -1,6 +1,7 @@
 import NewsList from "../../components/News/NewsList";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import NewsDataRequest from "../../uitls/request/NewsDataRequest";
+import revalidateTime from "../../config/revalidate";
 
 function News({NewsDataObj}) {
     return <NewsList {...NewsDataObj}/>
@@ -21,7 +22,7 @@ export async function getStaticProps(context) {
         }
     })
     return {
-        props: {NewsDataObj},revalidate:21600
+        props: {NewsDataObj},revalidate:revalidateTime
     }
 }
 export default News;

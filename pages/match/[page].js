@@ -1,6 +1,7 @@
 import ElegantBlogs from "../../components/Elegant/ElegantBlogs";
 import CustomHeadTag from "../../components/App/CustomHeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
+import revalidateTime from "../../config/revalidate";
 
 function MatchByPage({MatchData}) {
     return (
@@ -25,7 +26,7 @@ export async function getStaticProps(context) {
     if (MatchResult.Ok) MatchData.BlogsData = MatchResult.BlogsData
     console.log(MatchData)
     return {
-        props: {MatchData},revalidate:21600
+        props: {MatchData},revalidate:revalidateTime
     }
 }
 export async function getStaticPaths(){

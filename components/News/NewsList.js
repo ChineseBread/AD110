@@ -7,7 +7,6 @@ import Image from "next/image";
 import Menu from "../Elegant/Menu";
 import CustomHeadTag from "../App/CustomHeadTag";
 import {getTimeFromNow} from "../../uitls/present/TimeUtils";
-import {UBBToIntro} from "../../uitls/present/UBBUtils";
 import NewsDataRequest from "../../uitls/request/NewsDataRequest";
 import styles from '../../styles/pages/Classic/News.module.scss'
 import banner from '../../public/static/banner2.png'
@@ -22,13 +21,13 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
         else router.push(`/elegant/1?cateid=${key}`)
     }
     const menu = () => {
-        let items = BlogCategory.map(({cate_id,cate_name,cate_nums}) => ({key:cate_id,label:<span>{`${cate_name} | ${cate_nums}`}</span>}))
+        let items = BlogCategory.map(({cate_id,cate_name,cate_nums}) => ({key:cate_id,label:<span>{`${cate_name} | ${cate_nums}`}</span>})).filter(ele => ele.key !== 14)
         items = [{key:'elegant',label:<span>出色</span>}].concat(items)
         return <Menu onClick={changeCategory}  items={items}/>
     }
     return (
         <div className='page-content font-family'>
-            <CustomHeadTag title='AD110·咨讯'/>
+            <CustomHeadTag title='alife(原)'/>
             <Card
                 className='blog-card'
                 bordered={false}
@@ -57,9 +56,9 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
                                             }
                                             // className='section-card'
                                         >
-                                            <Meta title={title} description={
+                                            <Meta title={<span className={styles.news_title}>{title}</span>} description={
                                                 <div className={styles.news_description_container}>
-                                                    <div className={styles.news_content}>{UBBToIntro(content)}</div>
+                                                    <div className={styles.news_content}>{content}</div>
                                                     <Divider style={{margin:'4px 0'}}/>
                                                     <div className={styles.news_info}>{`${getTimeFromNow(post_time)} | By ${author}`}</div>
                                                 </div>

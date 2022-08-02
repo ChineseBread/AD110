@@ -5,12 +5,13 @@ import EditorRecommend from "../../components/Global/EditorRecommend";
 import CustomHeadTag from "../../components/App/CustomHeadTag";
 import PageBanner from "../../components/Global/PageBanner";
 import DataRequest from "../../uitls/request/DataRequest";
+import revalidateTime from "../../config/revalidate";
 function Library({LibraryData:{HotLinkCategoryList,NewIndexLinkList,HotClickLinkList,NewlyIndexLinkCover,HotClickCover,EditorRecommendLink,RecommendCover}}) {
     return (
         <div className='page-content font-family'>
             <CustomHeadTag title='AD110·资库'/>
             <HotLinkHeader HotLinkCategoryList={HotLinkCategoryList}/>
-            <LinkCard title='新导入条目'>
+            <LinkCard title='新录入条目'>
                 {NewIndexLinkList.length >= 1 ? NewIndexLinkList.map(({url_id,url_name,url_value}) => {
                     return <span className='link-item' key={url_id}><a target='_blank'  rel="noreferrer" href={url_value}>{url_name}</a></span>
                 }) : <Empty/>}
@@ -46,7 +47,7 @@ export async function getStaticProps(context) {
     })
     return {
         props: {LibraryData},
-        revalidate:1800
+        revalidate:revalidateTime
     }
 }
 export default Library;

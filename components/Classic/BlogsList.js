@@ -11,7 +11,7 @@ function BlogsList({Blogs}) {
             {Blogs.length >= 1 ? Blogs.map(({log_id,log_title,log_cover_image,log_intro_content,log_from,log_allusion},index) => {
                 return (
                    <Link href={`/section?articleid=${log_id}`} key={log_id}>
-                       <div  className={styles.year_blog_item}>
+                       <div className={styles.year_blog_item}>
                            <Card
                                hoverable
                                cover={<Image
@@ -23,7 +23,7 @@ function BlogsList({Blogs}) {
                                    src={BlogDataRequest.getBlogCover(log_cover_image) || banner2}
                                />}
                            >
-                               <Meta title={log_title} description={
+                               <Meta title={<span className={styles.year_blog_item_title}>{log_title}</span>} description={
                                    <div className={styles.year_blog_description_container}>
                                        <div className={styles.year_blog_description}>{log_intro_content}</div>
                                        <Divider style={{margin:'5px 0'}}/>

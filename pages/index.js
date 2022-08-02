@@ -12,17 +12,17 @@ import CustomHeadTag from "../components/App/CustomHeadTag";
 import styles from '../styles/pages/HomePage/HomePage.module.scss'
 import CoverDataRequest from "../uitls/request/CoverDataRequest";
 import DataRequest from "../uitls/request/DataRequest";
+import UrlBanner from '../public/static/logo.png'
+import revalidateTime from "../config/revalidate";
 function Homepage({HomePageData: {HotClickLinkList,EditorRecommendLink,HomePageBlogs:{Top,News,Articles,Hot,Race,Recruit},AuthorRecommend,RecommendCover,HotClickCover,HomePageFooterCover}}) {
     const {isPhone} = useContext(ScreenContext)
     return (
         <Fragment>
             <CustomHeadTag title='AD110'/>
             <div className={styles.home_page_title}>
-               <div className={styles.title_container}>
-                   <Link href={`/section?articleid=${Top.log_id}`}>
-                       <span className={styles.title_span}>{Top.log_title}</span>
-                   </Link>
-               </div>
+                <Link href={`/section?articleid=${Top.log_id}`}>
+                    <span className={styles.title_span}>{Top.log_title}</span>
+                </Link>
             </div>
             <div className='page-content font-family'>
                 {isPhone ?
@@ -46,25 +46,29 @@ function Homepage({HomePageData: {HotClickLinkList,EditorRecommendLink,HomePageB
                     }) : <Empty/>}
                 </LinkCard>
                 <PageBanner url={HotClickCover}/>
-                <div className={styles.home_page_url_container}>
+                <div className={styles.home_page_url_container} id='recommend'>
                     {AuthorRecommend.map(({url_name,url_value,logo_image,url_info,url_id}) => {
                         return (
                             <div className={styles.home_page_url_item} key={url_id}>
-                                <div className={styles.logo_container}>
-                                    {logo_image ? <Image
-                                        src={CoverDataRequest.getCoverByUrl(logo_image)}
-                                        priority={false}
-                                        layout='responsive'
-                                        objectFit='contain'
-                                    /> : 'AD110'}
-                                </div>
-                                <div className={styles.url_info_container}>
-                                    <div><a target='_blank' rel="noreferrer" href={url_value}>{url_name}</a></div>
-                                    <div>
-                                        <span style={{fontStyle:'italic',textDecoration:'underline'}}>推荐理由: </span>
-                                        <span>{url_info}</span>
+                                <a href={url_value} target='_blank' rel='noreferrer'>
+                                    <div className={styles.logo_container}>
+                                        <Image
+                                            src={CoverDataRequest.getCoverByUrl(logo_image) || UrlBanner}
+                                            priority={false}
+                                            layout='fill'
+                                            // width={210}
+                                            // height={66}
+                                            // objectFit='contain'
+                                        />
                                     </div>
-                                </div>
+                                    <div className={styles.url_info_container}>
+                                        <div>{url_name}</div>
+                                        <div>
+                                            <span style={{fontStyle:'italic',textDecoration:'underline'}}>推荐理由: </span>
+                                            <span>{url_info}</span>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         )
 
@@ -94,7 +98,7 @@ export async function getStaticProps() {
     })
     return {
         props: {HomePageData},
-        revalidate:10
+        revalidate:revalidateTime,
     }
 }
 export default Homepage;

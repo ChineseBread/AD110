@@ -7,6 +7,7 @@ import PageBanner from "../../components/Global/PageBanner";
 import CustomHeadTag from "../../components/App/CustomHeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import CoverDataRequest from "../../uitls/request/CoverDataRequest";
+import revalidateTime from "../../config/revalidate";
 //历年经典博文
 function Classic({ClassicData:{BlogsData,HomePageFooterCover}}) {
     const router = useRouter()
@@ -56,6 +57,6 @@ export async function getStaticProps(){
         }
     })
     if (ClassicResult.Ok) ClassicData = ClassicResult.BlogsData
-    return {props:{ClassicData},revalidate:21600}
+    return {props:{ClassicData},revalidate:revalidateTime}
 }
 export default Classic;

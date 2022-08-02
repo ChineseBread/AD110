@@ -1,10 +1,10 @@
 import {EyeFilled, LikeFilled, MessageFilled,} from "@ant-design/icons";
-import styles from '../../styles/pages/BlogPreview/BlogPreview.module.scss'
-import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import {message} from "antd";
+import styles from '../../styles/pages/BlogPreview/BlogPreview.module.scss'
+import OperationRequest from "../../uitls/request/OperationRequest";
 function BlogAction({log_comm_nums,log_view_nums,log_like_nums,log_id}) {
     const likeBlog = () => {
-        BlogDataRequest.likeBlog(log_id).then(result => {
+        OperationRequest.likeBlog(log_id).then(result => {
             message[result.Ok ? 'success' : 'warn'](result.Msg)
         })
     }

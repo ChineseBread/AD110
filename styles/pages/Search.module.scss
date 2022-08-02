@@ -8,22 +8,25 @@
     color: #40a9ff;
   }
 }
-.search_item_extra{
-  position: relative;
-  width: 280px;
-  height: 160px;
-  @media screen and (max-width: 1000px){
-    width: 90vw;
-  }
-}
+//.search_item_extra{
+//  position: relative;
+//  width: 280px;
+//  height: 160px;
+//}
+
+
 .search_item_content{
-  transition: color ease-in-out 0.2s;
-  &:hover{
+  span{
+    transition: color ease-in-out 0.2s;
     color: #8c8c8c;
+    &:hover{
+      color: #141414;
+    }
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  -webkit-line-clamp: 5;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
 }

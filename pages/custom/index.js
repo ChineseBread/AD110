@@ -4,6 +4,7 @@ import Link from "next/link";
 import CustomHeadTag from "../../components/App/CustomHeadTag";
 import CustomDataRequest from "../../uitls/request/CustomDataRequest";
 import styles from '../../styles/pages/CustomPage.module.scss'
+import revalidateTime from "../../config/revalidate";
 function CustomPageList({CustomPageData:{total,CustomPageList}}) {
     const [list,setList] = useState(CustomPageList)
     const [page,setPage] = useState(1)
@@ -44,7 +45,7 @@ export async function getStaticProps(context) {
         CustomPageData = result.CustomPageData
     }
     return {
-        props: {CustomPageData},revalidate:21600
+        props: {CustomPageData},revalidate:revalidateTime
     }
 }
 export default CustomPageList;

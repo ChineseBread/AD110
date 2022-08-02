@@ -2,6 +2,7 @@
 import ElegantBlogs from "../../components/Elegant/ElegantBlogs";
 import CustomHeadTag from "../../components/App/CustomHeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
+import revalidateTime from "../../config/revalidate";
 
 function Match({MatchData}) {
     return(
@@ -24,7 +25,7 @@ export async function getStaticProps(context) {
     let MatchResult = await BlogDataRequest.getBlogsByCateID(11)
     if (MatchResult.Ok) MatchData.BlogsData = MatchResult.BlogsData
     return {
-        props: {MatchData},revalidate:21600
+        props: {MatchData},revalidate:revalidateTime
     }
 }
 export default Match;

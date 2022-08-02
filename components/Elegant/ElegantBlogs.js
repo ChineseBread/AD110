@@ -15,7 +15,7 @@ function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategor
         router.push(`/elegant/${page}${cateID ? `?cateid=${cateID}` : ''}`)
     }
     const changeCategory = ({key}) => {
-        if (key === 12) router.push(`/news`)
+        if (key === 14) router.push(`/news`)
         else router.push(`/elegant/1?cateid=${key}`).then(() => setVisible(false))
     }
     const menu = () => {
