@@ -11,6 +11,8 @@ const nextConfig = {
   //   return config
   // },
   images: {
+    // type your image server domain here
+    // domain below is not available right now,just serve as an example
     domains: ['server.watish.xyz'],
   },
 }
