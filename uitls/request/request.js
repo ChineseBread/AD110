@@ -4,7 +4,9 @@ function doRequest({url,data,method = 'GET'}){
 	data = getQueryData(data)
 	return new Promise((resolve, reject) => {
 		axios.request({
-			url:`http://server.watish.xyz:9501${url}?${data}`,
+			// type your api server here
+			//all the requests will be send by these two function
+			url:`${url}?${data}`,
 			method,
 			timeout:10000
 		}).then(value => {
@@ -18,7 +20,7 @@ function doDataRequest({url,data,method = 'GET'}){
 	data = getQueryData(data)
 	return new Promise((resolve, reject) => {
 		axios.request({
-			url:`http://server.watish.xyz:9501${url}?${data}`,
+			url:`${url}?${data}`,
 			method,
 			timeout:10000
 		}).then(value => {
@@ -28,9 +30,11 @@ function doDataRequest({url,data,method = 'GET'}){
 		})
 	})
 }
+// this is the function which you get the image src from
 function getImageUrl(url){
 	if (!url || url.indexOf("http") !== -1) return ''
-	return `http://server.watish.xyz:4090${url}`
+	// type your own image url server here
+	return `${url}`
 }
 function getQueryData(data) {
 	return qs.stringify(data, {
