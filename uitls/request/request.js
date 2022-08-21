@@ -32,6 +32,7 @@ function doDataRequest({url,data,method = 'GET'}){
 }
 // this is the function which you get the image src from
 function getImageUrl(url){
+	// your can remove this if your are sure that all the image urls are not undefined
 	if (!url || url.indexOf("http") !== -1) return ''
 	// type your own image url server here
 	return `${url}`
