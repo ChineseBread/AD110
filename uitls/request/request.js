@@ -6,7 +6,7 @@ function doRequest({url,data,method = 'GET'}){
 		axios.request({
 			// type your api server here
 			//all the requests will be send by these two function
-			url:`https://ad110.com${url}?${data}`,
+			url:`https://ad110.com/api${url}?${data}`,
 			method,
 			timeout:10000
 		}).then(value => {
@@ -20,7 +20,7 @@ function doDataRequest({url,data,method = 'GET'}){
 	data = getQueryData(data)
 	return new Promise((resolve, reject) => {
 		axios.request({
-			url:`https://ad110.com${url}?${data}`,
+			url:`https://ad110.com/api${url}?${data}`,
 			method,
 			timeout:10000
 		}).then(value => {
