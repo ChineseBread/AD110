@@ -28,12 +28,12 @@ a {
   overflow: hidden;
 }
 .background-pc{
-  background:url("http://server.watish.xyz:4090/api/background/latest_pc_image");
+  background:url("https://ad110.com/api/background/latest_pc_image");
   background-size: cover;
   background-repeat: no-repeat;
 }
 .background-phone{
-  background:url("http://server.watish.xyz:4090/api/background/latest_mobile_image");
+  background:url("https://ad110.com/api/background/latest_mobile_image");
   background-size: 100% 200px;
   background-repeat: no-repeat;
 }
