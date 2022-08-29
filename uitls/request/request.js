@@ -6,7 +6,7 @@ function doRequest({url,data,method = 'GET'}){
 		axios.request({
 			// type your api server here
 			//all the requests will be send by these two function
-			url:`${url}?${data}`,
+			url:`https://ad110.com/${url}?${data}`,
 			method,
 			timeout:10000
 		}).then(value => {
@@ -20,7 +20,7 @@ function doDataRequest({url,data,method = 'GET'}){
 	data = getQueryData(data)
 	return new Promise((resolve, reject) => {
 		axios.request({
-			url:`${url}?${data}`,
+			url:`https://ad110.com/${url}?${data}`,
 			method,
 			timeout:10000
 		}).then(value => {
@@ -35,7 +35,7 @@ function getImageUrl(url){
 	// your can remove this if your are sure that all the image urls are not undefined
 	if (!url || url.indexOf("http") !== -1) return ''
 	// type your own image url server here
-	return `${url}`
+	return `https://ad110.com${url}`
 }
 function getQueryData(data) {
 	return qs.stringify(data, {
