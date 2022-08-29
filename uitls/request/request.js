@@ -18,6 +18,7 @@ function doRequest({url,data,method = 'GET'}){
 }
 function doDataRequest({url,data,method = 'GET'}){
 	data = getQueryData(data)
+	console.log(url)
 	return new Promise((resolve, reject) => {
 		axios.request({
 			url:`https://ad110.com${url}?${data}`,
