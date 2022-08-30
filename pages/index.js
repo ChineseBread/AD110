@@ -56,6 +56,7 @@ function Homepage({HomePageData: {HotClickLinkList,EditorRecommendLink,HomePageB
                                             src={CoverDataRequest.getCoverByUrl(logo_image) || UrlBanner}
                                             priority={false}
                                             layout='fill'
+                                            quality={10}
                                             // width={210}
                                             // height={66}
                                             // objectFit='contain'
