@@ -21,7 +21,7 @@ function BlogsList({Blogs}) {
                                    layout='responsive'
                                    alt={log_title}
                                    src={BlogDataRequest.getBlogCover(log_cover_image) || banner2}
-                                   quality={10}
+                                   quality={5}
                                />}
                            >
                                <Meta title={<span className={styles.year_blog_item_title}>{log_title}</span>} description={
