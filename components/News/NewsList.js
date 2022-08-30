@@ -52,6 +52,7 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
                                                     height={150}
                                                     layout='responsive'
                                                     alt={title}
+                                                    quality={15}
                                                 />
                                             }
                                             // className='section-card'
