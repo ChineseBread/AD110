@@ -11,11 +11,11 @@ function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategor
     const router = useRouter()
     const [visible,setVisible] = useState(false)
     const onPageChange = page => {
-        router.push(`/elegant/${cateid ? `${cateid}/${page}` : page}`)
+        router.push(`/elegant/${cateid ? `${page}/${cateid}` : page}`)
     }
     const changeCategory = ({key}) => {
         if (key === 14) router.push(`/news`)
-        else router.push(`/elegant/${key}/1`).then(() => setVisible(false))
+        else router.push(`/elegant/1/${key}`).then(() => setVisible(false))
         // else router.push(`/elegant/1?cateid=${key}`).then(() => setVisible(false))
     }
     const menu = () => {

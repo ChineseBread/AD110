@@ -22,7 +22,7 @@ function CheckNews({NewsData:{title,cover_image,cate_name,content,post_time,view
                 </div>
             </div>
             <div className={ContentStyle.info}>
-                <Link href='/news'><span>AD110·资讯</span></Link> {'>'} <Link href={`/elegant/${cate_id}/1`}><span>{cate_name}</span></Link>
+                <Link href='/news'><span>AD110·资讯</span></Link> {'>'} <Link href={`/elegant/1/${cate_id}`}><span>{cate_name}</span></Link>
             </div>
             <div className={ContentStyle.bread}>
                 <span>{`发布于 ${post_time}`}</span>

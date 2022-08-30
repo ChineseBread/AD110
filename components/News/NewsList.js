@@ -19,7 +19,7 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
     const changeCategory = ({key}) => {
         if (key === 'elegant') router.push('/elegant')
         // else router.push(`/elegant/1?cateid=${key}`)
-        else router.push(`/elegant/${key}/1`)
+        else router.push(`/elegant/1/${key}`)
     }
     const menu = () => {
         let items = BlogCategory.map(({cate_id,cate_name,cate_nums}) => ({key:cate_id,label:<span>{`${cate_name} | ${cate_nums}`}</span>})).filter(ele => ele.key !== 14)
