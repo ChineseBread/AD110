@@ -12,7 +12,6 @@ const nextConfig = {
   // },
   images: {
     // type your image server domain here
-    // domain below is not available right now,just serve as an example
     domains: ['ad110.com'],
   },
 }
