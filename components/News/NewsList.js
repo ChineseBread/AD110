@@ -18,7 +18,8 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
     }
     const changeCategory = ({key}) => {
         if (key === 'elegant') router.push('/elegant')
-        else router.push(`/elegant/1?cateid=${key}`)
+        // else router.push(`/elegant/1?cateid=${key}`)
+        else router.push(`/elegant/${key}/1`)
     }
     const menu = () => {
         let items = BlogCategory.map(({cate_id,cate_name,cate_nums}) => ({key:cate_id,label:<span>{`${cate_name} | ${cate_nums}`}</span>})).filter(ele => ele.key !== 14)
@@ -52,7 +53,7 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
                                                     height={150}
                                                     layout='responsive'
                                                     alt={title}
-                                                    quality={15}
+                                                    quality={5}
                                                 />
                                             }
                                             // className='section-card'
@@ -80,6 +81,7 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
                         total={total}
                         showQuickJumper
                         showTotal={total => `总共${total}个条目 | 当前页共${News.length}条`}
+                        hideOnSinglePage
                     />
                 </Fragment> : <Result status='404' title='暂无数据' extra={<Button onClick={() => router.replace('/news')} type='default'>返回咨询</Button>}/>}
 

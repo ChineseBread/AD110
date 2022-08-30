@@ -7,16 +7,16 @@ import BlogsList from "../Global/BlogsList";
 /**
  * @description 博文列表
  */
-function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategory = [],currentPage = "1"}}) {
+function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategory = [],currentPage = "1",cateid}}) {
     const router = useRouter()
     const [visible,setVisible] = useState(false)
     const onPageChange = page => {
-        const cateID = router.query.cateid
-        router.push(`/elegant/${page}${cateID ? `?cateid=${cateID}` : ''}`)
+        router.push(`/elegant/${cateid ? `${cateid}/${page}` : page}`)
     }
     const changeCategory = ({key}) => {
         if (key === 14) router.push(`/news`)
-        else router.push(`/elegant/1?cateid=${key}`).then(() => setVisible(false))
+        else router.push(`/elegant/${key}/1`).then(() => setVisible(false))
+        // else router.push(`/elegant/1?cateid=${key}`).then(() => setVisible(false))
     }
     const menu = () => {
         let items = BlogCategory.map(({cate_id,cate_name,cate_nums}) => ({key:cate_id,label:<span>{`${cate_name} | (${cate_nums})`}</span>}))
@@ -45,6 +45,7 @@ function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategor
                         total={total}
                         showQuickJumper
                         showTotal={total => `总共${total}个条目 | 当前页共${Blogs.length}条`}
+                        hideOnSinglePage
                     />
                 </> : <Empty />}
             </Card>

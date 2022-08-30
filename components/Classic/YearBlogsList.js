@@ -40,6 +40,7 @@ function YearBlogsList({YearBlogsData:{BlogsData:{Blogs,total,Year},currentPage 
                             total={total}
                             showQuickJumper
                             showTotal={total => `总共${total}个条目 | 当前页共${Blogs.length}条`}
+                            hideOnSinglePage
                         />
                     </Fragment>
                     : <Result title='当前年份暂无数据' status='404' extra={<Button onClick={() => router.replace('/classic')}>返回出色</Button>}/>}
