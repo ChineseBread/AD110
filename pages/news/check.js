@@ -15,7 +15,7 @@ function CheckNews({NewsData:{title,cover_image,cate_name,content,post_time,view
                     src={NewsDataRequest.getNewsCover(cover_image) || banner}
                     layout='fill'
                     objectFit='cover'
-                    quality={10}
+                    quality={1}
                 />
                 <div className={ContentStyle.title_container}>
                     <span className={ContentStyle.title}>{title}</span>
