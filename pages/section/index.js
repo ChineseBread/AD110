@@ -22,6 +22,7 @@ function BlogPreview({BlogPreviewData:{BlogData:{log_cate_id,log_id,log_title,ca
                     layout='fill'
                     objectFit='cover'
                     alt={log_title}
+                    quality={10}
                 />
                 <div className={ContentStyle.title_container}>
                     <span className={`${ContentStyle.title} font-family`}>{log_title}</span>
