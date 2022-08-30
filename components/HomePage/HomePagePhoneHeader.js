@@ -34,6 +34,7 @@ function NewsCarousel({Hot}){
                                 alt={log_title}
                                 objectFit='cover'
                                 layout='fill'
+                                quality={40}
                             />
                         </div>
                     </Link>
@@ -58,6 +59,7 @@ function NewsVertical({Articles}){
                                 alt={log_title}
                                 objectFit='cover'
                                 layout='fill'
+                                quality={20}
                             />
                         </div>
                     </Link>
