@@ -14,7 +14,9 @@ function BlogsByPage({ElegantData}) {
     )
 }
 export async function getStaticProps(context) {
+    
     const {params:{page,cateid}} = context
+    
     let ElegantData = {
         BlogsData:{
             category:'',
