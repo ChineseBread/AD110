@@ -56,8 +56,7 @@ function Homepage({HomePageData: {HotClickLinkList,EditorRecommendLink,HomePageB
                                             src={CoverDataRequest.getCoverByUrl(logo_image) || UrlBanner}
                                             priority={false}
                                             layout='fill'
-                                            quality={5}
-                                         
+                                            quality={1}
                                         />
                                     </div>
                                     <div className={styles.url_info_container}>

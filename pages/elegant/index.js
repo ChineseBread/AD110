@@ -1,6 +1,7 @@
 import ElegantBlogs from "../../components/Elegant/ElegantBlogs";
 import CustomHeadTag from "../../components/App/CustomHeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
+import revalidateTime from "../../config/revalidate";
 /**
  * @description 博文列表
  */
@@ -12,9 +13,9 @@ function Elegant({ElegantData}) {
         </>
     )
 }
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
     //如果出现根据分类id查询且使用服务器渲染
-    const {query:{cateid}} = context
+    // const {query:{cateid}} = context
     let ElegantData = {
         BlogsData:{
             category:'',
@@ -24,7 +25,8 @@ export async function getServerSideProps(context) {
         BlogCategory:[]
     }
     let ElegantResult = await Promise.all([
-        cateid ? BlogDataRequest.getBlogsByCateID(cateid) : BlogDataRequest.getNewestBlogs(),
+        // cateid ? BlogDataRequest.getBlogsByCateID(cateid) : BlogDataRequest.getNewestBlogs(),
+        BlogDataRequest.getNewestBlogs(),
         BlogDataRequest.getBlogCategory()
     ])
     ElegantResult.forEach(result => {
@@ -35,7 +37,8 @@ export async function getServerSideProps(context) {
     })
 
     return {
-        props: {ElegantData}
+        props: {ElegantData},
+        revalidate:revalidateTime
     }
 }
 export default Elegant;
