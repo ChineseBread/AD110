@@ -11,6 +11,7 @@ function Loading(props) {
                     src={logo}
                     layout='fill'
                     objectFit='contain'
+                    quality={5}
                 />
             </div>
             <Spin size='large'/>
