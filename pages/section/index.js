@@ -29,7 +29,7 @@ function BlogPreview({BlogPreviewData:{BlogData:{log_cate_id,log_id,log_title,ca
                 </div>
             </div>
             <div className={ContentStyle.info}>
-                <Link href='/elegant'><span>AD110·出色</span></Link> {'>'} <Link href={`/elegant/1/${log_cate_id}`}><span>{cate_name}</span></Link>
+                <Link href='/elegant'><span>AD110·出色</span></Link> {'>'} <Link href={`/elegant/${log_cate_id}/1`}><span>{cate_name}</span></Link>
             </div>
             <div className={ContentStyle.intro} dangerouslySetInnerHTML={{__html:log_intro_content}}/>
             <div className={ContentStyle.bread}>

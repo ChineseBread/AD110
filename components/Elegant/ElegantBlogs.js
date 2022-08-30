@@ -1,4 +1,4 @@
-import {Fragment, useMemo, useState} from "react";
+import {Fragment, useState} from "react";
 import {Button, Card, Dropdown, Empty, Pagination} from "antd";
 import {useRouter} from "next/router";
 import {UnorderedListOutlined} from "@ant-design/icons";
@@ -11,11 +11,11 @@ function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategor
     const router = useRouter()
     const [visible,setVisible] = useState(false)
     const onPageChange = page => {
-        router.push(`/elegant/${cateid ? `${page}/${cateid}` : page}`)
+        router.push(`/elegant/${cateid ? `${cateid}/${page}` : page}`)
     }
     const changeCategory = ({key}) => {
         if (key === 14) router.push(`/news`)
-        else router.push(`/elegant/1/${key}`).then(() => setVisible(false))
+        else router.push(`/elegant/${key}/1`).then(() => setVisible(false))
         // else router.push(`/elegant/1?cateid=${key}`).then(() => setVisible(false))
     }
     const menu = () => {
@@ -33,27 +33,21 @@ function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategor
                 className='blog-card'
             >
 
-                {useMemo(() => {
-                   return <>
-                       {
-                           Blogs.length >= 1 ? <>
-                               <BlogsList Blogs={Blogs}/>
-                               <Pagination
-                                   style={{display:'flex',justifyContent:'space-between'}}
-                                   onChange={onPageChange}
-                                   pageSize={40}
-                                   current={parseInt(currentPage)}
-                                   showSizeChanger={false}
-                                   responsive={true}
-                                   total={total}
-                                   showQuickJumper
-                                   showTotal={total => `总共${total}个条目 | 当前页共${Blogs.length}条`}
-                                   hideOnSinglePage
-                               />
-                           </> : <Empty />
-                       }
-                   </>
-                },[cateid,currentPage])}
+                {Blogs.length >= 1 ? <>
+                    <BlogsList Blogs={Blogs}/>
+                    <Pagination
+                        style={{display:'flex',justifyContent:'space-between'}}
+                        onChange={onPageChange}
+                        pageSize={40}
+                        current={parseInt(currentPage)}
+                        showSizeChanger={false}
+                        responsive={true}
+                        total={total}
+                        showQuickJumper
+                        showTotal={total => `总共${total}个条目 | 当前页共${Blogs.length}条`}
+                        hideOnSinglePage
+                    />
+                </> : <Empty />}
             </Card>
         </div>
     )
