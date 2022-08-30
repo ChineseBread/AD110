@@ -20,7 +20,7 @@ function BlogsList({Blogs}) {
                                 cover={
                                     <Image
                                         src={BlogDataRequest.getBlogCover(log_cover_image) || banner2}
-                                        quality={10}
+                                        quality={5}
                                         priority={index <= 11}
                                         width={225}
                                         height={150}
