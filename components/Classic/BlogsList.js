@@ -15,6 +15,7 @@ function BlogsList({Blogs}) {
                            <Card
                                hoverable
                                cover={<Image
+                                   priority={false}
                                    width={225}
                                    height={150}
                                    layout='responsive'
