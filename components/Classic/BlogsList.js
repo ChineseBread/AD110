@@ -8,14 +8,13 @@ const {Meta} = Card
 function BlogsList({Blogs}) {
     return (
         <div className={styles.year_blogs_container}>
-            {Blogs.length >= 1 ? Blogs.map(({log_id,log_title,log_cover_image,log_intro_content,log_from,log_allusion},index) => {
+            {Blogs.length >= 1 ? Blogs.map(({log_id,log_title,log_cover_image,log_intro_content,log_from,log_allusion}) => {
                 return (
                    <Link href={`/section?articleid=${log_id}`} key={log_id}>
                        <div className={styles.year_blog_item}>
                            <Card
                                hoverable
                                cover={<Image
-                                   priority={index <= 7}
                                    width={225}
                                    height={150}
                                    layout='responsive'
