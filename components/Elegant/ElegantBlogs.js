@@ -1,4 +1,4 @@
-import {Fragment, useState} from "react";
+import {Fragment, useMemo, useState} from "react";
 import {Button, Card, Dropdown, Empty, Pagination} from "antd";
 import {useRouter} from "next/router";
 import {UnorderedListOutlined} from "@ant-design/icons";
@@ -33,21 +33,27 @@ function ElegantBlogs({ElegantData:{BlogsData:{Blogs,total,category},BlogCategor
                 className='blog-card'
             >
 
-                {Blogs.length >= 1 ? <>
-                    <BlogsList Blogs={Blogs}/>
-                    <Pagination
-                        style={{display:'flex',justifyContent:'space-between'}}
-                        onChange={onPageChange}
-                        pageSize={40}
-                        current={parseInt(currentPage)}
-                        showSizeChanger={false}
-                        responsive={true}
-                        total={total}
-                        showQuickJumper
-                        showTotal={total => `总共${total}个条目 | 当前页共${Blogs.length}条`}
-                        hideOnSinglePage
-                    />
-                </> : <Empty />}
+                {useMemo(() => {
+                   return <>
+                       {
+                           Blogs.length >= 1 ? <>
+                               <BlogsList Blogs={Blogs}/>
+                               <Pagination
+                                   style={{display:'flex',justifyContent:'space-between'}}
+                                   onChange={onPageChange}
+                                   pageSize={40}
+                                   current={parseInt(currentPage)}
+                                   showSizeChanger={false}
+                                   responsive={true}
+                                   total={total}
+                                   showQuickJumper
+                                   showTotal={total => `总共${total}个条目 | 当前页共${Blogs.length}条`}
+                                   hideOnSinglePage
+                               />
+                           </> : <Empty />
+                       }
+                   </>
+                },[cateid,currentPage])}
             </Card>
         </div>
     )

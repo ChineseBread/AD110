@@ -124,7 +124,7 @@ function HeaderDropDown({style}) {
 			</span>
 			<Link href='/'>
 				<span>
-					<Image quality={10} src={style ? logoWhite : logo} alt='AD110' priority={true} layout='responsive' width={90} height={30}/>
+					<Image src={style ? logoWhite : logo} alt='AD110' priority={true} layout='responsive' width={90} height={30}/>
 				</span>
 			</Link>
 		</Fragment>

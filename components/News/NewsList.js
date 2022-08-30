@@ -1,4 +1,4 @@
-import {Fragment} from 'react';
+import {useMemo} from 'react';
 import {Button, Card, Divider, Dropdown, Pagination, Result} from "antd";
 import {UnorderedListOutlined} from "@ant-design/icons";
 import Link from "next/link";
@@ -32,58 +32,62 @@ function NewsList({NewsData:{News,total},BlogCategory,currentPage = '1'}) {
             <Card
                 className='blog-card'
                 bordered={false}
-                title={<Fragment>
+                title={<>
                     <span>资讯</span>
                     <Dropdown trigger={['click']} overlayClassName='blog-drop-down' placement='bottomLeft' overlay={menu()}><Button type='text' icon={<UnorderedListOutlined/>}/></Dropdown>
-                </Fragment>}
+                </>}
             >
-                {News.length >= 1 ? <Fragment>
-                    <div className={styles.news_container}>
-                        {News.map(({id,title,content,post_time,author,cover_image},index) => {
-                            return (
-                                <Link href={`/news/check?newsid=${id}`} key={id}>
-                                    <div className={styles.news_item} >
-                                        <Card
-                                            hoverable
-                                            cover={
-                                                <Image
-                                                    src={NewsDataRequest.getNewsCover(cover_image) || banner}
-                                                    priority={index <= 7}
-                                                    width={225}
-                                                    height={150}
-                                                    layout='responsive'
-                                                    alt={title}
-                                                    quality={5}
-                                                />
-                                            }
-                                            // className='section-card'
-                                        >
-                                            <Meta title={<span className={styles.news_title}>{title}</span>} description={
-                                                <div className={styles.news_description_container}>
-                                                    <div className={styles.news_content}>{content}</div>
-                                                    <Divider style={{margin:'4px 0'}}/>
-                                                    <div className={styles.news_info}>{`${getTimeFromNow(post_time)} | By ${author}`}</div>
-                                                </div>
-                                            }/>
-                                        </Card>
-                                    </div>
-                                </Link>
-                            )
-                        })}
-                    </div>
-                    <Pagination
-                        style={{display:'flex',justifyContent:'space-between'}}
-                        onChange={onPageChange}
-                        pageSize={20}
-                        current={parseInt(currentPage)}
-                        showSizeChanger={false}
-                        responsive={true}
-                        total={total}
-                        showQuickJumper
-                        showTotal={total => `总共${total}个条目 | 当前页共${News.length}条`}
-                        hideOnSinglePage
-                    />
-                </Fragment> : <Result status='404' title='暂无数据' extra={<Button onClick={() => router.replace('/news')} type='default'>返回咨询</Button>}/>}
+                {useMemo(() => {
+                    return <>
+                        {News.length >= 1 ? <>
+                            <div className={styles.news_container}>
+                                {News.map(({id,title,content,post_time,author,cover_image},index) => {
+                                    return (
+                                        <Link href={`/news/check?newsid=${id}`} key={id}>
+                                            <div className={styles.news_item} >
+                                                <Card
+                                                    hoverable
+                                                    cover={
+                                                        <Image
+                                                            src={NewsDataRequest.getNewsCover(cover_image) || banner}
+                                                            priority={index <= 7}
+                                                            width={225}
+                                                            height={150}
+                                                            layout='responsive'
+                                                            alt={title}
+                                                            quality={5}
+                                                        />
+                                                    }
+                                                    // className='section-card'
+                                                >
+                                                    <Meta title={<span className={styles.news_title}>{title}</span>} description={
+                                                        <div className={styles.news_description_container}>
+                                                            <div className={styles.news_content}>{content}</div>
+                                                            <Divider style={{margin:'4px 0'}}/>
+                                                            <div className={styles.news_info}>{`${getTimeFromNow(post_time)} | By ${author}`}</div>
+                                                        </div>
+                                                    }/>
+                                                </Card>
+                                            </div>
+                                        </Link>
+                                    )
+                                })}
+                            </div>
+                            <Pagination
+                                style={{display:'flex',justifyContent:'space-between'}}
+                                onChange={onPageChange}
+                                pageSize={20}
+                                current={parseInt(currentPage)}
+                                showSizeChanger={false}
+                                responsive={true}
+                                total={total}
+                                showQuickJumper
+                                showTotal={total => `总共${total}个条目 | 当前页共${News.length}条`}
+                                hideOnSinglePage
+                            />
+                        </> : <Result status='404' title='暂无数据' extra={<Button onClick={() => router.replace('/news')} type='default'>返回咨询</Button>}/>}
+                    </>
+                },[currentPage])}
 
             </Card>
         </div>

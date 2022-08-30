@@ -64,7 +64,7 @@ function DetailedNews({Blogs}){
                                       height={170}
                                       width={250}
                                       layout='responsive'
-                                      quality={10}
+                                      quality={20}
                                     />
                                 </div>
                                 <div className={styles.detailed_content}>
