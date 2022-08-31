@@ -1,0 +1,112 @@
+.home_page_news_container{
+  display: flex;
+  flex-direction: column;
+  //三张图 左边竖直一张右边两张扁的
+  .vertical{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 8px 0 8px;
+    background-color: #fff;
+    // 图片 高度适应
+    & > div{
+      height: 450px;
+      @media screen and (max-width: 520px) {
+        height: 250px;
+      }
+      width: 49%
+    }
+    //左边走马灯图片
+    .left_item{
+      height: 450px;
+      position: relative;
+      color: #fff;
+      @media screen and (max-width: 520px) {
+        height: 250px;
+      }
+      .news_content{
+        position: absolute;
+        width: 100%;
+        height: auto;
+        bottom: 15px;
+        //上浮
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        span:nth-child(1){
+          width: 70%;
+          -webkit-line-clamp: 2;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        span:nth-child(2){
+          max-width: 40%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+    .right_container{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @media screen and (min-width: 700px){
+        font-size: 16px;
+      }
+      .right_item{
+        height: 48%;
+        width: 100%;
+        position: relative;
+        color: #fff;
+        .news_content{
+          position: absolute;
+          width: 100%;
+          height: auto;
+          bottom: 10px;
+          z-index: 1;
+          text-align: center;
+          //标题居中
+          //display: flex;
+          //flex-direction: column;
+          //align-items: center;
+          span{
+            margin: 0 auto;
+            width: 70%;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+  .concise{
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: #ebebeb;
+    margin-top: 10px;
+    padding: 5px;
+    .concise_item{
+      display: inline-block;
+      line-height: 20px;
+      width: 50%;
+      &:nth-child(2n){
+        padding-left: 5px;
+      }
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      a{
+        color: #595959;
+      }
+    }
+  }
+}

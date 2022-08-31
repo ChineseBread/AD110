@@ -1,15 +1,13 @@
+const babelTransform = require('babel-plugin-transform-imports')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-  // webpack: (config, options) => {
-  //   const alias = config.resolve.alias
-  //   config.resolve.alias = {
-  //     ...alias,
-  //     '@styles':'D:\\next-course\\next-website\\styles',
-  //     "@components":'D:\\next-course\\next-website\\components'
-  //   }
-  //   return config
-  // },
+  reactStrictMode: true,
+  swcMinify:true,
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
   images: {
     // type your image server domain here
     domains: ['ad110.com'],

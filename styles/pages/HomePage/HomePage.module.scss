@@ -1,0 +1,106 @@
+.home_page_title{
+  height: 130px;
+  margin: 30px 0 60px 0;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: siyuansongti;
+  .title_span{
+    padding: 0 80px;
+    line-height: 70px;
+    font-size: 50px;
+    user-select: none;
+    cursor: pointer;
+    max-width: 900px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    word-break: break-all;
+  }
+}
+
+.home_page_url_container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  a{
+    color: #000000;
+  }
+  .home_page_url_item{
+    width: 23.5%;
+    margin: 15px 0;
+    height: auto;
+    padding: 0 10px;
+    border: 1px solid #8c8c8c;
+    font-size: 12px;
+
+    .logo_container{
+      position: relative;
+      height: 66px;
+      margin-bottom: 5px;
+      user-select: none;
+      img{
+        max-width: 100%;
+        object-fit: contain;
+      }
+    }
+    .url_info_container{
+      height: 85px;
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid #595959;
+      //url名称
+      div:nth-child(1){
+        max-width: 80%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        a{
+          color: #595959;
+          &:hover{
+            color: #40a9ff;
+          }
+        }
+      }
+      //url介绍
+      div:nth-child(2){
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        //介绍内容灰色
+        color: #8c8c8c;
+      }
+    }
+  }
+}
+@media screen and (max-width: 900px){
+  //头部标题
+  .home_page_title{
+    margin: 0 0 40px 0;
+    height: 100px;
+    .title_span{
+      padding: 0;
+      font-size: 20px;
+      line-height: initial;
+      max-width: 80%;
+    }
+  }
+
+  .home_page_url_container{
+    padding: 10px;
+    .home_page_url_item{
+      width: 48%;
+      margin:5px 0;
+      .logo_container{
+        font-size: 18px;
+      }
+    }
+  }
+}

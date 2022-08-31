@@ -1,0 +1,63 @@
+
+//连接信息item
+.link_info_item{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  @media screen and (min-width: 1000px){
+    padding: 10px 0;
+  }
+  .link_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    div:nth-child(1){
+      font-size: 20px;
+      width: 340px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      a{
+        color: #262626;
+        &:hover{
+          color: #595959;
+        }
+      }
+    }
+    div:nth-child(2){
+      font-size: 12px;
+      line-height: 32px;
+      & > span{
+        margin: 0 5px;
+        color: #8c8c8c;
+      }
+    }
+  }
+  .link_info_content{
+    width: 500px;
+    a{
+      transition: color ease-in-out 0.2s;
+      color: #8c8c8c;
+      &:hover{
+        color: #434343;
+      }
+    }
+  }
+}
+@media screen and (max-width: 786px){
+  .link_info_item{
+    flex-direction: column;
+    .link_info{
+      flex-direction: row;
+      div:nth-child(1){
+        width: auto;
+        max-width: 50%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    .link_info_content{
+      width: 100%;
+    }
+  }
+}

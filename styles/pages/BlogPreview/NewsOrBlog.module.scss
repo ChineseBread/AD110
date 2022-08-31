@@ -1,0 +1,120 @@
+.header{
+  height: 350px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  -moz-user-select:none;/*火狐*/
+  -webkit-user-select:none;/*webkit浏览器*/
+  -ms-user-select:none;/*IE10*/
+  user-select:none;
+  .title_container{
+    width: 100%;
+    padding: 0 10px;
+    margin: 0 auto;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    //居中标题
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .title{
+      color: rgb(255,253,64);
+      font-size: 35px;
+      max-width: 50%;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+      word-break: break-all;
+      //position: absolute;
+    }
+  }
+
+}
+//分类名
+.info{
+  margin: 300px auto 0 auto;
+  padding: 0 10px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  span{
+    cursor: pointer;
+    transition: color ease-in-out 0.2s;
+    &:hover{
+      color:#434343;
+    }
+  }
+  span{
+    margin: 0 5px;
+    color: #8c8c8c;
+  }
+}
+//文章摘要
+.intro{
+  color:#40a9ff;
+  max-width: 100%;
+  margin: 20px auto 10px auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  word-break: break-all;
+  font-size: 14px;
+  font-weight: 600;
+}
+// 时间发表作者信息
+.bread{
+  padding: 0 10px;
+  margin: 10px auto 20px auto;
+  max-width: 100%;
+  font-style: italic;
+  span{
+    margin: 0 5px;
+    color: #8c8c8c;
+  }
+}
+.ubb_content{
+  //text-indent: 40px;
+  font-size: 16px;
+  word-break: break-all;
+  font{
+    max-width: 100%;
+    word-break: break-all;
+  }
+}
+@media screen and (max-width: 1000px){
+  .header{
+    width: 100%;
+    height: 150px;
+    .title_container{
+      .title{
+        width: 100%;
+        font-size: 18px;
+        max-width: 80%;
+      }
+
+    }
+
+  }
+  .intro{
+    padding: 0 10px;
+    margin: 10px auto;
+  }
+  .info{
+    margin: 110px auto 10px auto;
+  }
+  .ubb_content{
+    width: 100%;
+    padding: 0 10px;
+    //.ubb_img_container{
+    //  width: 100%;
+    //}
+  }
+}
