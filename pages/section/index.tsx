@@ -10,7 +10,7 @@ import BlogRecommend from "@components/blog/BlogRecommend";
 import BlogAction from "@components/blog/BlogAction";
 import {useRouter} from "next/router";
 interface Props{
-    BlogData:BlogInfoData
+    BlogData:Omit<BlogInfoData,'has_pic' | 'archived' | 'has_poster' | 'log_allusion' | 'log_modify' | 'log_quote' | 'log_from' | 'log_cover_id' | 'log_poster_image'>
     CommentsData:{
         CommentsList:BlogComment[]
         total:number
@@ -58,20 +58,21 @@ export async function getServerSideProps(context:any):Promise<NextStaticPropsVal
         'Cache-Control',
         'public, s-maxage=86400, stale-while-revalidate=5'
     )
-    let BlogPreviewData:any = {
+    let BlogPreviewData:Props = {
         BlogData:{
-            log_id:'',
             log_cate_id:'',
+            log_id:'',
             log_title:'',
             cate_name:'',
             log_cover_image:'',
             log_author:'',
             log_content:'',
             log_posttime:'',
+            log_intro_content:'',
+            log_comm_nums:0,
             log_view_nums:0,
             log_like_nums:0,
-            log_comm_nums:0,
-            log_discomment_switch:0,
+            log_discomment_switch:0
         },
         Recommend:[],
         CommentsData:{
