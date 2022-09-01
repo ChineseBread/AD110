@@ -31,7 +31,8 @@ a {
   background-repeat: no-repeat;
 }
 .background-phone{
-  background:url("https://ad110.com/api/background/latest_mobile_image");
+  /*background:url("https://ad110.com/api/background/latest_mobile_image");*/
+  background:url("https://s1.hdslb.com/bfs/static/stone-free/dyn-home/assets/background.png");
   background-size: 100% 200px;
   background-repeat: no-repeat;
 }
