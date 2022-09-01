@@ -38,7 +38,6 @@ function NewsCarousel({Blogs}:{Blogs:BlogData[]}){
                                 </div>
                                 <Image
                                     src={BlogDataRequest.getBlogCover(log_poster_image || log_cover_image) || banner1}
-                                    priority={true}
                                     alt={log_title}
                                     width={420}
                                     height={600}
@@ -66,7 +65,6 @@ function DetailedNews({Blogs}:{Blogs:BlogData[]}){
                                 <div className={styles.detailed_item_img}>
                                     <Image
                                         src={BlogDataRequest.getBlogCover(log_cover_image) || banner2}
-                                        priority={true}
                                         alt={log_title}
                                         height={170}
                                         width={250}
