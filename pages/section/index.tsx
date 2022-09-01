@@ -53,7 +53,11 @@ function BlogPreview({BlogData:{log_cate_id,log_id,log_title,cate_name,log_cover
     )
 }
 export async function getServerSideProps(context:any):Promise<NextStaticPropsValue<Props>>{
-    const {query:{articleid}} = context
+    const {query:{articleid},req,res} = context
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=21600, stale-while-revalidate=5'
+    )
     let BlogPreviewData:any = {
         BlogData:{
             log_id:'',

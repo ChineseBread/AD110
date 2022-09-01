@@ -37,7 +37,11 @@ function CheckNews({title,cover_image,cate_name,content,post_time,view_nums,cate
 
 export default CheckNews;
 export async function getServerSideProps(context:any):Promise<NextStaticPropsValue<NewsData>>{
-    const {query:{newsid}} = context
+    const {query:{newsid},res,req} = context
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=21600, stale-while-revalidate=5'
+    )
     let NewsData:NewsData = {
         id:'',
         author:'',
