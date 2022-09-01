@@ -13,6 +13,7 @@ import '@styles/app/header.scss'
 import '@styles/pages/BlogPreview/BlogPreviewImg.scss'
 import '@styles/pages/Library/LinkCard.scss'
 import '@styles/pages/Classic/BlogCardHeader.scss'
+// import 'antd/dist/antd.min.css';
 import 'antd/dist/antd.compact.min.css'
 function MyApp({ Component, pageProps }:any) {
 
@@ -50,7 +51,7 @@ function MyApp({ Component, pageProps }:any) {
                   <Footer/>
                 </div>
                 <BackTop>
-                  <Button size='large' icon={<ArrowUpOutlined />}/>
+                  <Button shape='circle' size='large' icon={<ArrowUpOutlined />}/>
                 </BackTop>
                 {width >= 1000 && <AdjustScale/>}
               </Fragment>}

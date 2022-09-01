@@ -1,7 +1,6 @@
-const babelTransform = require('babel-plugin-transform-imports')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
   swcMinify:true,
   eslint: {
     // Warning: This allows production builds to successfully complete even if

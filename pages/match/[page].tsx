@@ -37,7 +37,7 @@ export async function getStaticProps(context:any):Promise<NextStaticPropsValue<P
     }
 }
 export async function getStaticPaths(){
-    let paths = Array.from({length:10}).map((_,index) => ({params:{page:String(index + 1)}}))
+    let paths = Array.from({length:3}).map((_,index) => ({params:{page:String(index + 1)}}))
     return {
         paths,
         fallback:'blocking'

@@ -39,7 +39,7 @@ export async function getStaticProps(context:any):Promise<NextStaticPropsValue<P
 }
 export async function getStaticPaths():Promise<NextStaticPaths<{year:string,page:string}>>{
     const currentYear = Number(getFormatTime(new Date().getTime() / 1000,'YYYY'))
-    let paths = Array.from({length:currentYear - 2005 + 1}).map((_,index) => {
+    let paths = Array.from({length:3}).map((_,index) => {
         return {params:{year:String(currentYear - index),page:'1'}}
     })
     return {paths,fallback:'blocking'}

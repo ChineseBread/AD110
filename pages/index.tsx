@@ -75,6 +75,7 @@ function Homepage({HotClickLinkList,EditorRecommendLinkList,BlogList:{Top,News,A
                                             priority={false}
                                             layout='fill'
                                             quality={5}
+                                            alt={url_name}
                                         />
                                     </div>
                                     <div className={styles.url_info_container}>
