@@ -40,7 +40,7 @@ export async function getServerSideProps(context:any):Promise<NextStaticPropsVal
     const {query:{newsid},res,req} = context
     res.setHeader(
         'Cache-Control',
-        'public, s-maxage=21600, stale-while-revalidate=5'
+        'public, s-maxage=86400, stale-while-revalidate=5'
     )
     let NewsData:NewsData = {
         id:'',

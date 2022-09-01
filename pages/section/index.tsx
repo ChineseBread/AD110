@@ -56,7 +56,7 @@ export async function getServerSideProps(context:any):Promise<NextStaticPropsVal
     const {query:{articleid},req,res} = context
     res.setHeader(
         'Cache-Control',
-        'public, s-maxage=21600, stale-while-revalidate=5'
+        'public, s-maxage=86400, stale-while-revalidate=5'
     )
     let BlogPreviewData:any = {
         BlogData:{
