@@ -26,7 +26,7 @@ a {
 }
 .background-pc{
   background:url("https://s1.hdslb.com/bfs/static/stone-free/dyn-home/assets/background.png");
-  // background:url("https://ad110.com/api/background/latest_pc_image");
+  /*background:url("https://ad110.com/api/background/latest_pc_image");*/
   background-size: cover;
   background-repeat: no-repeat;
 }
