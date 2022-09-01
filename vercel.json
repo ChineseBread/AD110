@@ -1,4 +1,28 @@
-"images": {
-    "minimumCacheTTL":864000,
-    "formats": ["image/webp", "image/avif"]
+{
+  "headers": [
+    {
+        "source":'/section',
+        "has":[
+          {
+            "type":'query',
+            "key":"articleid",
+            "value":"^[1-9]d*$"
+          }
+        ],
+        "key":"Cache-Control",
+        "value":"public,must-revalidate,s-maxage=864000"
+    },
+    {
+        "source":'/news',
+        "has":[
+          {
+            "type":'query',
+            "key":"newsid",
+            "value":"^[1-9]d*$"
+          }
+        ],
+        "key":"Cache-Control",
+        "value":"public,must-revalidate,s-maxage=864000"
+    }
+  ]
 }
