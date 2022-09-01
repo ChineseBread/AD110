@@ -8,8 +8,6 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    // cache
-    minimumCacheTTL: 31536000,
     // type your image server domain here
     domains: ['ad110.com'],
   },
