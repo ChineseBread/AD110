@@ -1,43 +1,32 @@
 {
   "headers": [
     {
-      "source": "/service-worker.js",
-      "headers" : [
-        {
-          "key" : "Cache-Control",
-          "value" : "public, max-age=0, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers" : [
-        {
-          "key" : "X-Content-Type-Options",
-          "value" : "nosniff"
-        },
-        {
-          "key" : "X-Frame-Options",
-          "value" : "DENY"
-        },
-        {
-          "key" : "X-XSS-Protection",
-          "value" : "1; mode=block"
-        }
-      ]
-    },
-    {
-      "source": "/:path*",
+      "source": "/news",
       "has": [
         {
           "type": "query",
-          "key": "authorized"
+          "key": "newsid"
         }
       ],
       "headers": [
         {
-          "key": "x-authorized",
-          "value": "true"
+          "key": "Cache-Control",
+          "value": "must-revalidate,s-maxage=864000"
+        }
+      ]
+    }
+    {
+      "source": "/section",
+      "has": [
+        {
+          "type": "query",
+          "key": "articleid"
+        }
+      ],
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "must-revalidate,s-maxage=864000"
         }
       ]
     }
