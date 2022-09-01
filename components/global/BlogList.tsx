@@ -21,7 +21,6 @@ function BlogsList({Blogs}:{Blogs:BlogData[]}) {
                                     <Image
                                         src={BlogDataRequest.getBlogCover(log_cover_image) || BlogCardBanner}
                                         quality={5}
-                                        priority={index <= 11}
                                         width={225}
                                         height={150}
                                         layout='responsive'
