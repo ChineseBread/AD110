@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/news",
       "has": [
         {
           "type": "query",
@@ -11,12 +11,12 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "must-revalidate,s-maxage=864000"
+          "value": "public, max-age=3600, must-revalidate"
         }
       ]
     }
     {
-      "source": "/(.*)",
+      "source": "/section",
       "has": [
         {
           "type": "query",
@@ -26,7 +26,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "must-revalidate,s-maxage=864000"
+          "value": "public, max-age=3600, must-revalidate"
         }
       ]
     }
