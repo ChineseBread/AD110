@@ -1,10 +1,10 @@
 {
   "headers": [
     {
-        "source":'/section',
+        "source":"/section",
         "has":[
           {
-            "type":'query',
+            "type":"query",
             "key":"articleid",
             "value":"^[1-9]d*$"
           }
@@ -13,10 +13,10 @@
         "value":"public,must-revalidate,s-maxage=864000"
     },
     {
-        "source":'/news',
+        "source":"/news"',
         "has":[
           {
-            "type":'query',
+            "type":"query",
             "key":"newsid",
             "value":"^[1-9]d*$"
           }
