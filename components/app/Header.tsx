@@ -3,7 +3,6 @@ import {Button, Dropdown, Input, Menu} from "antd";
 import {SearchOutlined, UnorderedListOutlined} from "@ant-design/icons";
 import {useRouter} from "next/router";
 import Image from "next/image";
-import Link from "next/link";
 import logo from '@public/static/logo.png'
 import logoWhite from '@public/static/logo_white.png'
 import styles from "@styles/app/CustomHeader.module.scss"
@@ -113,11 +112,9 @@ function HeaderDropDown({style}:any) {
 					<Button size='large' type='text' icon={<UnorderedListOutlined style={{color:style ? "#fff" : '#141414'}}/>}/>
 				</Dropdown>
 			</span>
-            <Link href='/'>
-				<span>
-					<Image quality={70} src={style ? logoWhite : logo} alt='AD110' priority={true} layout='responsive' width={90} height={30}/>
-				</span>
-            </Link>
+            <span>
+                <Image onClick={() => router.push('/')} quality={70} src={style ? logoWhite : logo} alt='AD110' priority={true} layout='responsive' width={90} height={30}/>
+            </span>
         </Fragment>
     );
 }
