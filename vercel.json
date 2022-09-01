@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/news",
+      "source": "/(.*)",
       "has": [
         {
           "type": "query",
@@ -16,7 +16,7 @@
       ]
     }
     {
-      "source": "/section",
+      "source": "/(.*)",
       "has": [
         {
           "type": "query",
