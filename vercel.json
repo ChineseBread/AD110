@@ -1,13 +1,4 @@
-{
-  "headers": [
-    {
-      "source": "/image",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=864000"
-        }
-      ]
-    }
-  ]
+"images": {
+    "minimumCacheTTL":864000,
+    "formats": ["image/webp", "image/avif"]
 }
