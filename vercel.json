@@ -13,7 +13,7 @@
         "value":"public,must-revalidate,s-maxage=864000"
     },
     {
-        "source":"/news"',
+        "source":"/news",
         "has":[
           {
             "type":"query",
