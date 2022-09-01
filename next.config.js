@@ -10,6 +10,7 @@ const nextConfig = {
     minimumCacheTTL:864000,
     // type your image server domain here
     domains: ['ad110.com'],
+    formats: ["image/webp", "image/avif"]
   },
 }
 
