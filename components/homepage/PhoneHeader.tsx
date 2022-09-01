@@ -36,6 +36,7 @@ function NewsCarousel({Hot}:{Hot:BlogData[]}){
                             </div>
                             <Image
                                 src={BlogDataRequest.getBlogCover(log_poster_image || log_cover_image) || VerticalBanner}
+                                priority={true}
                                 alt={log_title}
                                 objectFit='cover'
                                 layout='fill'
@@ -60,6 +61,7 @@ function NewsVertical({Articles}:{Articles:BlogData[]}){
                             </div>
                             <Image
                                 src={BlogDataRequest.getBlogCover(log_poster_image || log_cover_image) || banner}
+                                priority={true}
                                 alt={log_title}
                                 objectFit='cover'
                                 layout='fill'
