@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Button, Card, Empty, message} from "antd";
 import Link from "next/link";
 import HeadTag from "@components/app/HeadTag";
@@ -8,6 +8,19 @@ function CustomPageList() {
     const [list,setList] = useState<CustomPage[]>([])
     const [page,setPage] = useState(1)
     const [hasMore,setHasMore] = useState(false)
+    const [loading,setLoading] = useState(true)
+    useEffect(() => {
+        CustomPageDataRequest.getCustomPage(1,20).then(result => {
+            if (result.Ok){
+                const {CustomPageData:{CustomPageList,total}}:any = result
+                setList(CustomPageList)
+                setHasMore(CustomPageList.length < total)
+            }else{
+                message.warn('获取失败')
+            }
+            setLoading(false)
+        })
+    },[])
     const getMoreCustomPage = () => {
         CustomPageDataRequest.getCustomPage(page + 1, 20).then(result => {
           if (result.Ok){
@@ -23,7 +36,7 @@ function CustomPageList() {
     return (
         <div className='page-content font-family'>
             <HeadTag title='AD110'/>
-            <Card title='自定义页面'>
+            <Card title={loading ? '加载中' : '自定义页面'} loading={loading}>
                 <div className={styles.custom_page_container}>
                     {list.length >= 1 ? list.map(({page_id,page_title}) => {
                         return(
