@@ -91,7 +91,7 @@ function HeaderDropDown({style}:any) {
             <Menu.Item key='homepage'>
                 首页
             </Menu.Item>
-            <Menu.Item key='/search'><Search placeholder='回车搜索' onSearch={handleSearch} onPressEnter={handleSearch}  value={text} onChange={handleText}/></Menu.Item>
+            <Menu.Item key='search'><Search placeholder='回车搜索' onSearch={handleSearch} onPressEnter={handleSearch}  value={text} onChange={handleText}/></Menu.Item>
             <Menu.Item key='library'>
                 资库
             </Menu.Item>
