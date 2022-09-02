@@ -111,10 +111,8 @@ export async function getStaticProps(context:any):Promise<NextStaticPropsValue<P
 }
 export async function getStaticPaths():Promise<NextStaticPaths<{kindid:string}>> {
     let paths:Array<{params:{kindid:string}}> = []
-    LinkDataRequest.getHotLinkList().then(result => {
-        if (result.Ok) paths = (result.HotLinkList || []).map(({id}) => ({params:{kindid:String(id)}}))
-    })
-
+    let result = await LinkDataRequest.getHotLinkList()
+    if (result.Ok) paths = (result.HotLinkList || []).map(({id}) => ({params:{kindid:String(id)}}))
     return { paths, fallback: 'blocking' }
 }
 

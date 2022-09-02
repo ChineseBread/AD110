@@ -16,7 +16,7 @@ interface Props{
     currentPage:string
     cateid:BlogCategory["cate_id"]
 }
-function BlogsByPage(ElegantData:Props) {
+function BlogsByCateID(ElegantData:Props) {
     return(
         <>
             <HeadTag title='AD110·出色'/>
@@ -55,12 +55,11 @@ export async function getStaticProps(context:any):Promise<NextStaticPropsValue<P
 }
 export async function getStaticPaths():Promise<NextStaticPaths<{cateid:string,page:'1'}>>{
     let paths:Array<{ params: { cateid: string, page: '1' } }> = []
-    BlogDataRequest.getBlogCategory().then((result:any) => {
-        if (result.Ok) paths = result.CategoryList.map(({cate_id}:BlogCategory) => ({params:{cateid:cate_id,page:'1'}}))
-    })
+    let result:any = await BlogDataRequest.getBlogCategory()
+    if (result.Ok) paths = result.CategoryList.map(({cate_id}:BlogCategory) => ({params:{cateid:String(cate_id),page:'1'}}))
     return {
         paths,
         fallback:'blocking'
     }
 }
-export default BlogsByPage;
+export default BlogsByCateID;

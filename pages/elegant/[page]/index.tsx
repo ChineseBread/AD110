@@ -16,7 +16,7 @@ interface Props{
     currentPage:string
 }
 
-function Elegant(ElegantData:Props) {
+function BlogsByPage(ElegantData:Props) {
     return (
         <>
             <HeadTag title='AD110·出色'/>
@@ -59,4 +59,4 @@ export async function getStaticPaths():Promise<NextStaticPaths<{page:string}>>{
         fallback:'blocking'
     }
 }
-export default Elegant;
+export default BlogsByPage;

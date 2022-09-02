@@ -2,19 +2,19 @@ import {Fragment, useContext} from "react";
 import {Empty} from "antd";
 import Link from "next/link";
 import Image from 'next/image'
-import ScreenContext from "@store/ScreenContext";
 import HeadTag from "@components/app/HeadTag";
-import styles from '@styles/pages/HomePage/HomePage.module.scss'
 import PageBanner from "@components/global/PageBanner";
 import RecommendLinkList from "@components/library/RecommendLinkList";
 import LinkCard from "@components/library/LinkCard";
-import CoverDataRequest from "@utils/request/CoverDataRequest";
-import UrlBanner from '@public/static/logo.png'
-import revalidateTime from "@config/revalidate";
-import BlogDataRequest from "@utils/request/BlogDataRequest";
-import LinkDataRequest from "@utils/request/LinkDataRequest";
 import PhoneHeader from "@components/homepage/PhoneHeader";
 import PCHeader from "@components/homepage/PCHeader";
+import UrlBanner from '@public/static/logo.png'
+import BlogDataRequest from "@utils/request/BlogDataRequest";
+import CoverDataRequest from "@utils/request/CoverDataRequest";
+import LinkDataRequest from "@utils/request/LinkDataRequest";
+import ScreenContext from "@store/ScreenContext";
+import revalidateTime from "@config/revalidate";
+import styles from '@styles/pages/HomePage/HomePage.module.scss'
 declare type BlogDomain = 'Top' | 'News' | 'Articles' | 'Hot' | 'Race' | 'Recruit'
 interface Props{
     HotClickLinkList:BlogLink[]

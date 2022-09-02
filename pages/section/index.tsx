@@ -30,6 +30,7 @@ function BlogPreview({BlogData:{log_cate_id,log_id,log_title,cate_name,log_cover
                     objectFit='cover'
                     alt={log_title}
                     quality={1}
+                    unoptimized={true}
                 />
                 <div className={ContentStyle.title_container}>
                     <span className={`${ContentStyle.title} font-family`}>{log_title}</span>

@@ -65,7 +65,8 @@ function HeaderDropDown({style}:any) {
     const [text,setText] = useState('')
     const handleMenuClick = ({key}:any) => {
         if (key !== 'search') {
-            router.push(`${key}`)
+            if (key === 'homepage') router.push('/')
+            else router.push(`/${key}`)
             setVisible(false);
         }
     };
@@ -87,20 +88,20 @@ function HeaderDropDown({style}:any) {
         <Menu
             onClick={handleMenuClick}
         >
-            <Menu.Item key='/'>
+            <Menu.Item key='homepage'>
                 首页
             </Menu.Item>
             <Menu.Item key='/search'><Search placeholder='回车搜索' onSearch={handleSearch} onPressEnter={handleSearch}  value={text} onChange={handleText}/></Menu.Item>
-            <Menu.Item key='/library'>
+            <Menu.Item key='library'>
                 资库
             </Menu.Item>
-            <Menu.Item key='/elegant'>
+            <Menu.Item key='elegant'>
                 出色
             </Menu.Item>
-            <Menu.Item key='/match'>
+            <Menu.Item key='match'>
                 竞赛
             </Menu.Item>
-            <Menu.Item key='/classic'>
+            <Menu.Item key='classic'>
                 经典
             </Menu.Item>
         </Menu>
@@ -130,7 +131,8 @@ function HeaderMenu({style}:any){
         setText('')
     }
     const onClick = ({key}:any) => {
-        router.push(`${key}`)
+        if (key === 'homepage') router.push('/')
+        else router.push(`${key}`)
     }
     const {menu,menuItem} = style ? HomeHeader : OtherHeader
     return (
@@ -141,19 +143,19 @@ function HeaderMenu({style}:any){
                 style={menu}
                 onClick={onClick}
             >
-                <Menu.Item key='/'>
+                <Menu.Item key='homepage'>
                     <span style={menuItem}>首页</span>
                 </Menu.Item>
-                <Menu.Item key='/library'>
+                <Menu.Item key='library'>
                     <span style={menuItem}>资库</span>
                 </Menu.Item>
-                <Menu.Item key='/elegant'>
+                <Menu.Item key='elegant'>
                     <span style={menuItem}>出色</span>
                 </Menu.Item>
-                <Menu.Item key='/match'>
+                <Menu.Item key='match'>
                     <span style={menuItem}>竞赛</span>
                 </Menu.Item>
-                <Menu.Item key='/classic'>
+                <Menu.Item key='classic'>
                     <span style={menuItem}>经典</span>
                 </Menu.Item>
             </Menu>
