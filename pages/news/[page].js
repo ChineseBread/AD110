@@ -1,4 +1,4 @@
-import NewsList from "../../components/News/NewsList";
+import NewsList from "../../components/news/NewsList";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import NewsDataRequest from "../../uitls/request/NewsDataRequest";
 import revalidateTime from "../../config/revalidate";
@@ -31,7 +31,7 @@ export async function getStaticProps(context) {
         revalidate:revalidateTime
     }
 }
-export async function getStaticPaths(){
-    let paths = Array.from({length:10}).map((_,index) => ({params:{page:String(index + 1)}}))
+export function getStaticPaths(){
+    let paths = Array.from({length:2}).map((_,index) => ({params:{page:String(index + 1)}}))
     return {paths,fallback:'blocking'}
 }

@@ -1,10 +1,10 @@
 import {Button, Card, Input, message, Result} from "antd";
 import {SearchOutlined, UnorderedListOutlined} from "@ant-design/icons";
 import {useRouter} from "next/router";
-import BlogsList from "../../components/Classic/BlogsList";
+import BlogsList from "../../components/classic/BlogsList";
 import {getFormatTime} from "../../uitls/present/TimeUtils";
-import PageBanner from "../../components/Global/PageBanner";
-import CustomHeadTag from "../../components/App/CustomHeadTag";
+import PageBanner from "../../components/global/PageBanner";
+import HeadTag from "../../components/app/HeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import CoverDataRequest from "../../uitls/request/CoverDataRequest";
 import revalidateTime from "../../config/revalidate";
@@ -21,7 +21,7 @@ function Classic({ClassicData:{BlogsData,HomePageFooterCover}}) {
     }
     return (
         <div className='page-content font-family'>
-            <CustomHeadTag title='AD110·经典'/>
+            <HeadTag title='AD110·经典'/>
             <Card
                 title='经典'
                 className='blog-card'

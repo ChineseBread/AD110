@@ -1,13 +1,13 @@
 import {getFormatTime} from "../../../uitls/present/TimeUtils";
-import YearBlogsList from "../../../components/Classic/YearBlogsList";
-import CustomHeadTag from "../../../components/App/CustomHeadTag";
+import YearBlogsList from "../../../components/classic/YearBlogsList";
+import HeadTag from "../../../components/app/HeadTag";
 import BlogDataRequest from "../../../uitls/request/BlogDataRequest";
 import revalidateTime from "../../../config/revalidate";
 
 function YearBlogByPage({YearBlogsData}) {
     return (
         <>
-            <CustomHeadTag title='AD110·经典'/>
+            <HeadTag title='AD110·经典'/>
             <YearBlogsList YearBlogsData={YearBlogsData}/>
         </>
     )
@@ -31,7 +31,7 @@ export async function getStaticProps(context) {
 }
 export async function getStaticPaths(){
     const currentYear = getFormatTime(new Date() / 1000,'YYYY')
-    let paths = Array.from({length:currentYear - 2005 + 1}).map((_,index) => {
+    let paths = Array.from({length:10}).map((_,index) => {
         return {params:{year:String(currentYear - index),page:'1'}}
     })
     return {paths,fallback:'blocking'}

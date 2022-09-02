@@ -1,28 +1,29 @@
 // 咨询预览
 import {EyeOutlined} from "@ant-design/icons";
-import Link from "next/link";
 import Image from "next/image";
-import CustomHeadTag from "../../components/App/CustomHeadTag";
+import HeadTag from "../../components/app/HeadTag";
 import NewsDataRequest from "../../uitls/request/NewsDataRequest";
 import ContentStyle from "../../styles/pages/BlogPreview/NewsOrBlog.module.scss";
 import banner from '../../public/static/banner3.jpg'
+import {useRouter} from "next/router";
 function CheckNews({NewsData:{title,cover_image,cate_name,content,post_time,view_nums,cate_id}}) {
+    const router = useRouter()
     return (
         <div className='page-content font-family'>
-            <CustomHeadTag title={title}/>
+            <HeadTag title={title}/>
             <div className={ContentStyle.header}>
                 <Image
                     src={NewsDataRequest.getNewsCover(cover_image) || banner}
                     layout='fill'
                     objectFit='cover'
-                    quality={1}
+                    unoptimized={true}
                 />
                 <div className={ContentStyle.title_container}>
                     <span className={ContentStyle.title}>{title}</span>
                 </div>
             </div>
             <div className={ContentStyle.info}>
-                <Link href='/news'><span>AD110·资讯</span></Link> {'>'} <Link href={`/elegant/${cate_id}/1`}><span>{cate_name}</span></Link>
+                <span onClick={() => router.push('/news')}>AD110·资讯</span> {'>'} <span onClick={() => router.push(`/elegant/1/${cate_id}`)}>{cate_name}</span>
             </div>
             <div className={ContentStyle.bread}>
                 <span>{`发布于 ${post_time}`}</span>

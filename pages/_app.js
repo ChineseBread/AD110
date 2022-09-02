@@ -2,11 +2,11 @@ import {useEffect, Fragment, useState} from "react";
 import {BackTop, Button,ConfigProvider} from "antd";
 import {ArrowUpOutlined} from "@ant-design/icons";
 import zhCN from 'antd/lib/locale/zh_CN';
-import CustomHeader from "../components/App/CustomHeader";
-import CustomFooter from "../components/App/CustomFooter";
+import Header from "../components/app/Header";
+import Footer from "../components/app/Footer";
 import {ScreenContextProvider} from "../store/ScreenContext";
-import Loading from "../components/Global/Loading";
-import AdjustScale from "../components/App/AdjustScale";
+import Loading from "../components/global/Loading";
+import AdjustScale from "../components/app/AdjustScale";
 import '../styles/global/globals.css'
 import '../styles/app/header.scss'
 import '../styles/pages/BlogPreview/BlogPreviewImg.scss'
@@ -42,13 +42,13 @@ function MyApp({ Component, pageProps }) {
                  waiting ?  <Loading/> :
                  <Fragment>
                      <div className='page-header'>
-                        <CustomHeader/>
+                        <Header/>
                      </div>
                      <div className='page-content-container'>
                         <Component {...pageProps} />
                      </div>
                      <div className='page-footer font-family'>
-                        <CustomFooter/>
+                        <Footer/>
                      </div>
                      <BackTop>
                         <Button type='circle' size='large' icon={<ArrowUpOutlined />}/>

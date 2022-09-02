@@ -1,35 +1,36 @@
 import {Divider} from "antd";
 import Image from "next/image";
-import Link from "next/link";
-import BlogCommentsList from "../../components/Blog/BlogCommentsList";
-import BlogAction from "../../components/Blog/BlogAction";
-import BlogRecommend from "../../components/Blog/BlogRecommend";
+import BlogCommentsList from "../../components/blog/BlogCommentsList";
+import BlogAction from "../../components/blog/BlogAction";
+import BlogRecommend from "../../components/blog/BlogRecommend";
 import {getFormatTime} from "../../uitls/present/TimeUtils";
-import CustomHeadTag from "../../components/App/CustomHeadTag";
+import HeadTag from "../../components/app/HeadTag";
 import DataRequest from "../../uitls/request/DataRequest";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import banner from '../../public/static/banner3.jpg'
 import ContentStyle from '../../styles/pages/BlogPreview/NewsOrBlog.module.scss'
+import {useRouter} from "next/router";
 
 //博客预览界面
 function BlogPreview({BlogPreviewData:{BlogData:{log_cate_id,log_id,log_title,cate_name,log_cover_image,log_author,log_content,log_posttime,log_intro_content,log_comm_nums,log_view_nums,log_like_nums,comm_hide_switch},CommentsData,Recommend}}) {
+    const router = useRouter()
     return (
         <div className='page-content'>
-            <CustomHeadTag title={log_title}/>
+            <HeadTag title={log_title}/>
             <div className={ContentStyle.header}>
                 <Image
                     src={BlogDataRequest.getBlogCover(log_cover_image) || banner}
                     layout='fill'
                     objectFit='cover'
                     alt={log_title}
-                    quality={1}
+                    unoptimized={true}
                 />
                 <div className={ContentStyle.title_container}>
                     <span className={`${ContentStyle.title} font-family`}>{log_title}</span>
                 </div>
             </div>
             <div className={ContentStyle.info}>
-                <Link href='/elegant'><span>AD110·出色</span></Link> {'>'} <Link href={`/elegant/${log_cate_id}/1`}><span>{cate_name}</span></Link>
+                <span onClick={() => router.push('/elegant')}>AD110·出色</span> {'>'} <span onClick={() => router.push(`/elegant/1/${log_cate_id}`)}>{cate_name}</span>
             </div>
             <div className={ContentStyle.intro} dangerouslySetInnerHTML={{__html:log_intro_content}}/>
             <div className={ContentStyle.bread}>
@@ -46,7 +47,11 @@ function BlogPreview({BlogPreviewData:{BlogData:{log_cate_id,log_id,log_title,ca
     )
 }
 export async function getServerSideProps(context){
-    const {query:{articleid}} = context
+    const {query:{articleid},res} = context
+    res.setHeader(
+        'Cache-Control',
+        'public, s-maxage=86400, stale-while-revalidate=5'
+    )
     let BlogPreviewData = {
         BlogData:{
             log_id:'',

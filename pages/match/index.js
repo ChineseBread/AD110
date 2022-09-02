@@ -1,13 +1,13 @@
 //竞赛页面
-import ElegantBlogs from "../../components/Elegant/ElegantBlogs";
-import CustomHeadTag from "../../components/App/CustomHeadTag";
+import ElegantBlogs from "../../components/elegant/ElegantBlogs";
+import HeadTag from "../../components/app/HeadTag";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import revalidateTime from "../../config/revalidate";
 
 function Match({MatchData}) {
     return(
         <>
-            <CustomHeadTag title='AD110·竞赛'/>
+            <HeadTag title='AD110·竞赛'/>
             <ElegantBlogs ElegantData={MatchData}/>
         </>
     )

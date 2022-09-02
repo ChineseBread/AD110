@@ -22,13 +22,14 @@
       color: rgb(255,253,64);
       font-size: 35px;
       max-width: 50%;
+      font-weight: 600;
       -webkit-line-clamp: 2;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
       text-align: center;
-      word-break: break-all;
+      word-break: break-word;
       //position: absolute;
     }
   }
@@ -65,7 +66,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
-  word-break: break-all;
+  word-break: break-word;
   font-size: 14px;
   font-weight: 600;
 }
@@ -83,10 +84,12 @@
 .ubb_content{
   //text-indent: 40px;
   font-size: 16px;
-  word-break: break-all;
+  word-break: break-word;
+  //overflow: hidden;
+  //hyphens: auto;
   font{
     max-width: 100%;
-    word-break: break-all;
+    word-break: break-word;
   }
 }
 @media screen and (max-width: 1000px){

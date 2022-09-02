@@ -1,4 +1,4 @@
-import {doDataRequest, doRequest, getImageUrl} from "./request";
+import {doDataRequest, getImageUrl} from "./request";
 
 class BlogDataRequest{
 
@@ -41,20 +41,6 @@ class BlogDataRequest{
 			}
 		})
 	}
-	// static getRandomBlogs(limit = 4){
-	// 	return new Promise(async (resolve,reject) => {
-	// 	    try {
-	// 			let result = await doDataRequest({url:'/blog_content/get_random',data:{limit}})
-	// 			if (Array.isArray(result.Data)){
-	// 				resolve({Ok:true,RandomBlogs:result.Data})
-	// 			}else{
-	// 				resolve({Ok:false})
-	// 			}
-	// 		}catch (e){
-	// 			resolve({Ok:false})
-	// 		}
-	// 	})
-	// }
 	/**
 	 * @description 根据分类获取博文
 	 */
@@ -117,7 +103,7 @@ class BlogDataRequest{
 			}
 		})
 	}
-	static getBlogCommentsByBlogID(logid,limit = 5,page = 1){
+	static getBlogCommentsByBlogID(logid,limit = 20,page = 1){
 		return new Promise(async (resolve,reject) => {
 		    try {
 				let result = await doDataRequest({url:'/blog_comment/list_by_logid',data:{logid,limit,page}})

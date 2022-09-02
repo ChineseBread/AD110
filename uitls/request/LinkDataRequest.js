@@ -1,4 +1,4 @@
-import {doDataRequest, doRequest} from "./request";
+import {doDataRequest} from "./request";
 class LinkDataRequest{
 	/**
 	 * @description 获取热门链接分类

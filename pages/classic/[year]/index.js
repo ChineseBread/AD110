@@ -1,13 +1,13 @@
 import {getFormatTime} from "../../../uitls/present/TimeUtils";
-import YearBlogsList from "../../../components/Classic/YearBlogsList";
-import CustomHeadTag from "../../../components/App/CustomHeadTag";
+import YearBlogsList from "../../../components/classic/YearBlogsList";
+import HeadTag from "../../../components/app/HeadTag";
 import BlogDataRequest from "../../../uitls/request/BlogDataRequest";
 import revalidateTime from "../../../config/revalidate";
 
 function YearBlog({YearBlogsData}) {
     return(
         <>
-            <CustomHeadTag title='AD110·经典'/>
+            <HeadTag title='AD110·经典'/>
             <YearBlogsList YearBlogsData={YearBlogsData}/>
         </>
     )

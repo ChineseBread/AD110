@@ -2,13 +2,13 @@ import {Fragment, useContext} from "react";
 import {Empty} from "antd";
 import Link from "next/link";
 import ScreenContext from "../store/ScreenContext";
-import EditorRecommend from "../components/Global/EditorRecommend";
-import PageBanner from "../components/Global/PageBanner";
-import LinkCard from "../components/Global/LinkCard";
+import EditorRecommend from "../components/library/EditorRecommend";
+import PageBanner from "../components/global/PageBanner";
+import LinkCard from "../components/library/LinkCard";
 import Image from "next/image";
-import HomePagePCHeader from "../components/HomePage/HomePagePCHeader";
-import HomePagePhoneHeader from "../components/HomePage/HomePagePhoneHeader";
-import CustomHeadTag from "../components/App/CustomHeadTag";
+import HomePagePCHeader from "../components/homepage/HomePagePCHeader";
+import HomePagePhoneHeader from "../components/homepage/HomePagePhoneHeader";
+import HeadTag from "../components/app/HeadTag";
 import styles from '../styles/pages/HomePage/HomePage.module.scss'
 import CoverDataRequest from "../uitls/request/CoverDataRequest";
 import DataRequest from "../uitls/request/DataRequest";
@@ -18,7 +18,7 @@ function Homepage({HomePageData: {HotClickLinkList,EditorRecommendLink,HomePageB
     const {isPhone} = useContext(ScreenContext)
     return (
         <Fragment>
-            <CustomHeadTag title='AD110'/>
+            <HeadTag title='AD110'/>
             <div className={styles.home_page_title}>
                 <Link href={`/section?articleid=${Top.log_id}`}>
                     <span className={styles.title_span}>{Top.log_title}</span>
@@ -42,7 +42,7 @@ function Homepage({HomePageData: {HotClickLinkList,EditorRecommendLink,HomePageB
                 <PageBanner url={RecommendCover}/>
                 <LinkCard title='点击排行榜TOP100'>
                     {HotClickLinkList.length >= 1 ? HotClickLinkList.map(({url_id,url_name,url_value}) => {
-                        return <span className='link-item' key={url_id}><a target='_blank'  rel="noreferrer" href={url_value}>{url_name}</a></span>
+                        return <span className='link-item' key={url_id}><a target='_blank'  rel="noreferrer" href={"/api/redirect/url?url=" + url_value}>{url_name}</a></span>
                     }) : <Empty/>}
                 </LinkCard>
                 <PageBanner url={HotClickCover}/>
@@ -50,19 +50,21 @@ function Homepage({HomePageData: {HotClickLinkList,EditorRecommendLink,HomePageB
                     {AuthorRecommend.map(({url_name,url_value,logo_image,url_info,url_id}) => {
                         return (
                             <div className={styles.home_page_url_item} key={url_id}>
-                                <a href={url_value} target='_blank' rel='noreferrer'>
+                                <a href={"/api/redirect/url?url=" + url_value} target='_blank' rel='noreferrer'>
                                     <div className={styles.logo_container}>
                                         <Image
                                             src={CoverDataRequest.getCoverByUrl(logo_image) || UrlBanner}
                                             priority={false}
                                             layout='fill'
-                                            quality={1}
+                                            alt={url_name}
+                                            unoptimized={true}
                                         />
                                     </div>
                                     <div className={styles.url_info_container}>
-                                        <div>{url_name}</div>
+                                        <div style={{fontWeight:'600'}}>{url_name}</div>
                                         <div>
-                                            <span style={{fontStyle:'italic',textDecoration:'underline'}}>推荐理由: </span>
+                                            <span style={{fontStyle:'italic',textDecoration:'underline'}}>推荐理由</span>
+					                        <span style={{fontStyle:'italic'}}>: </span>
                                             <span>{url_info}</span>
                                         </div>
                                     </div>

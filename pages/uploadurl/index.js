@@ -4,6 +4,8 @@ import styles from '../../styles/pages/UrlUpload.module.scss'
 import OperationRequest from "../../uitls/request/OperationRequest";
 const {TextArea} = Input
 function UrlUpload(props) {
+//dispatch(push("/custom/check", {"pageid":5}));
+	//return;
     const [form] = Form.useForm()
     const onFinish = ({name,url,info}) => {
         OperationRequest.uploadUrl(name,url,info).then(result => {
@@ -12,6 +14,12 @@ function UrlUpload(props) {
             })
         })
     }
+//   return <div className={styles.url_upload_container}>
+//		<div>
+//			<h1>链接提交已移至新页面</h1>	
+//			<a href="/custom/check?pageid=17">立即访问</a>
+//		</div>
+//	</div>
     return (
         <div className={styles.url_upload_container}>
             <div>

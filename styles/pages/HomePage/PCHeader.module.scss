@@ -2,7 +2,7 @@
   display: flex;
   height: 600px;
   margin: 5px 0;
-  font-family: siyuansongti;
+  font-weight: 600;
   .vertical{
     height: 100%;
     width: 420px;
@@ -88,7 +88,7 @@
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
-          word-break: break-all;
+          word-break: break-word;
           height: 44px;
         }
         .detailed_description{
@@ -136,7 +136,7 @@
     justify-content: space-between;
     .concise_item{
       max-height: 48px;
-      word-break: break-all;
+      word-break: break-word;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -144,7 +144,7 @@
       text-overflow: ellipsis;
       //种类分割行
       a{
-        color: #595959;
+        color: #292525;
         &:hover{
           color: #262626;
         }

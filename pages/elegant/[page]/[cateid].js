@@ -1,15 +1,13 @@
 import BlogDataRequest from "../../../uitls/request/BlogDataRequest";
-import ElegantBlogs from "../../../components/Elegant/ElegantBlogs";
-import CustomHeadTag from "../../../components/App/CustomHeadTag";
+import HeadTag from "../../../components/app/HeadTag";
+import ElegantBlogs from "../../../components/elegant/ElegantBlogs";
 import revalidateTime from "../../../config/revalidate";
-/**
- * @description 博文列表 根据页数获取
- */
-function BlogsByPage({ElegantData}) {
+
+export default function BlogsByCateID(ElegantData) {
     return(
         <>
-            <CustomHeadTag title='AD110·出色'/>
-            <ElegantBlogs ElegantData={ElegantData}/>
+            <HeadTag title='AD110·出色'/>
+            <ElegantBlogs {...ElegantData}/>
         </>
     )
 }
@@ -29,7 +27,6 @@ export async function getStaticProps(context) {
     if (Number.isNaN(parseInt(page))) return {props:{ElegantData}}
 
     let ElegantResult = await Promise.all([
-        // cateid ? BlogDataRequest.getBlogsByCateID(cateid,40,page) : BlogDataRequest.getNewestBlogs(40, page),
         BlogDataRequest.getBlogsByCateID(cateid,40,page),
         BlogDataRequest.getBlogCategory()
     ])
@@ -41,17 +38,15 @@ export async function getStaticProps(context) {
     })
     return {
         props: {ElegantData},
-        revalidate:revalidateTime
+        revalidate:revalidateTime,
     }
 }
 export async function getStaticPaths(){
     let paths = []
-    BlogDataRequest.getBlogCategory().then(result => {
-        if (result.Ok) paths = result.BlogCategory.map(({cate_id}) => ({cateid:cate_id,page:1}))
-    })
+    let result = await BlogDataRequest.getBlogCategory()
+    if (result.Ok) paths = result.BlogCategory.map(({cate_id}) => ({params:{cateid:String(cate_id),page:'1'}}))
     return {
         paths,
         fallback:'blocking'
     }
 }
-export default BlogsByPage;

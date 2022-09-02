@@ -2,11 +2,11 @@ import {useContext, useEffect, useState} from 'react';
 import {Button, Divider, Empty, PageHeader} from "antd";
 import {useRouter} from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
-import HotLinkHeader from "../../components/Global/HotLinkHeader";
-import PageBanner from "../../components/Global/PageBanner";
-import PhoneComponent from "../../components/Library/PhoneComponent";
-import PCComponent from "../../components/Library/PCComponent";
-import CustomHeadTag from "../../components/App/CustomHeadTag";
+import HotLinkHeader from "../../components/library/HotLinkHeader";
+import PageBanner from "../../components/global/PageBanner";
+import PhoneComponent from "../../components/library/PhoneComponent";
+import PCComponent from "../../components/library/PCComponent";
+import HeadTag from "../../components/app/HeadTag";
 import ScreenContext from "../../store/ScreenContext";
 import LinkDataRequest from "../../uitls/request/LinkDataRequest";
 import CoverDataRequest from "../../uitls/request/CoverDataRequest";
@@ -46,11 +46,10 @@ function LinkInfo({LibraryData:{HotLinkCategoryList,UrlListInfo:{kindName,UrlLis
     }
     return (
         <div className='page-content font-family'>
-            <CustomHeadTag title='AD110·资库'/>
+            <HeadTag title='AD110·资库'/>
             <HotLinkHeader HotLinkCategoryList={HotLinkCategoryList}/>
             <div>
                 <PageHeader
-                    // className="link-info-page-header"
                     title={kindName}
                     subTitle={<>本类目共有{total}个条目 | <span style={{color:'#40a9ff'}}>★</span>为编辑推荐</>}
                     style={!isPhone ? {padding:'4px 0',borderBottom:'1px solid #8c8c8c'} : {}}

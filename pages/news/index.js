@@ -1,4 +1,4 @@
-import NewsList from "../../components/News/NewsList";
+import NewsList from "../../components/news/NewsList";
 import BlogDataRequest from "../../uitls/request/BlogDataRequest";
 import NewsDataRequest from "../../uitls/request/NewsDataRequest";
 import revalidateTime from "../../config/revalidate";

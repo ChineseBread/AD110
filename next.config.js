@@ -1,19 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  // webpack: (config, options) => {
-  //   const alias = config.resolve.alias
-  //   config.resolve.alias = {
-  //     ...alias,
-  //     '@styles':'D:\\next-course\\next-website\\styles',
-  //     "@components":'D:\\next-course\\next-website\\components'
-  //   }
-  //   return config
-  // },
+  swcMinify:true,
   images: {
-    // type your image server domain here
     domains: ['ad110.com'],
+    // domains: ['103.164.63.206','server.watish.xyz','127.0.0.1','ad110.com','www.ad110.com','103.164.62.138'],
+    // domains: ['103.164.63.206','server.watish.xyz','127.0.0.1','ad110.com','www.ad110.com','103.164.62.138'],
   },
 }
-
 module.exports = nextConfig

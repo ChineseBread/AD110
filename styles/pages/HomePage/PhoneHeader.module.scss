@@ -1,6 +1,7 @@
 .home_page_news_container{
   display: flex;
   flex-direction: column;
+     font-weight:  600;
   //三张图 左边竖直一张右边两张扁的
   .vertical{
     display: flex;
@@ -105,7 +106,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       a{
-        color: #595959;
+        color: #292525;
       }
     }
   }

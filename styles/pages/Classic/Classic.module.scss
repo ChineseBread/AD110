@@ -7,13 +7,14 @@
     height: 325px;
     padding: 5px 0;
     .year_blog_item_title{
+            font-weight: bold;
       height: 50px;
       -webkit-line-clamp: 2;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      word-break: break-all;
+      word-break: break-word;
       white-space: normal;
     }
     .year_blog_description_container{
