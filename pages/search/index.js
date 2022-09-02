@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
 import {Divider, Empty, List, message, Skeleton} from "antd";
+import {useRouter} from "next/router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import BlogItem from "../../components/search/BlogItem";
 import UrlItem from "../../components/search/UrlItem";
 import HeadTag from "../../components/app/HeadTag";
 import SearchDataRequest from "../../uitls/request/SearchDataRequest";
-import {useRouter} from "next/router";
 
 function Search() {
     const router = useRouter()
@@ -15,7 +15,9 @@ function Search() {
     const [loading,setLoading] = useState(true)
     const [hasMore,setHasMore] = useState(false)
     useEffect(() => {
-        query && SearchDataRequest.getSearchData(query,1).then(result => {
+        if (!query) return
+        setLoading(true)
+        SearchDataRequest.getSearchData(query,1).then(result => {
             if (result.Ok){
                 const {SearchData:{SearchList,total}} = result
                 setList(SearchList)
