@@ -132,7 +132,7 @@ function HeaderMenu({style}:any){
     }
     const onClick = ({key}:any) => {
         if (key === 'homepage') router.push('/')
-        else router.push(`${key}`)
+        else router.push(`/${key}`)
     }
     const {menu,menuItem} = style ? HomeHeader : OtherHeader
     return (
