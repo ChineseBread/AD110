@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }:any) {
     const clientWidth = document.documentElement.clientWidth
     const scale = clientWidth / 1500
     if (scale >= 0.9){
-      document.documentElement.style.fontSize = (scale * 20).toFixed(3) + 'px'
+      document.documentElement.style.fontSize = (scale * 16).toFixed(3) + 'px'
     }
     setWidth(clientWidth)
     setTimeout(() => {
