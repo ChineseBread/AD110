@@ -3,7 +3,7 @@ import {Button} from "antd";
 import {MinusOutlined, PlusOutlined} from "@ant-design/icons";
 
 function AdjustScale() {
-    const [size,setSize] = useState(20)
+    const [size,setSize] = useState(16)
     const [scale,] = useState(() => {
         const scale = document.documentElement.clientWidth / 1500
         return scale >= 0.9 ? scale : 1
