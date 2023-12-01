@@ -7,10 +7,12 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    minimumCacheTTL:864000,
+    // minimumCacheTTL:864000,
     // type your image server domain here
     domains: ['ad110.com'],
-    formats: ["image/webp", "image/avif"]
+    unoptimized: true,
+    // loaderFile: './config/loader.js'
+    // formats: ["image/webp", "image/avif"]
   },
 }
 
